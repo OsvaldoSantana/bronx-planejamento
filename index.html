@@ -1,0 +1,534 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programação Semanal — Bronx</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== LIGHT (default — melhor p/ reunião projetada) ===== */
+:root{
+  --bg:#EEF1F5; --bg2:#FFFFFF; --panel:#FFFFFF; --panel2:#F2F5F8; --line:#D5DDE5; --line2:#E6ECF1;
+  --ink:#16212C; --ink2:#54636F; --ink3:#8A98A4;
+  --acc:#E8551F; --acc-d:#BE400F; --accsoft:#FCEDE6;
+  --ok:#127C53; --okbg:#E2F4EC; --bad:#C8323A; --badbg:#FBE6E7; --warn:#9A6700; --warnbg:#FBF1D8;
+  --headerbg:rgba(255,255,255,.92); --grp:#EAF0F5; --today:#FFF6F1; --shadow:0 18px 50px rgba(20,40,60,.18);
+}
+html[data-theme="dark"]{
+  --bg:#0E1116; --bg2:#151A21; --panel:#1A2129; --panel2:#212A34; --line:#2B3540; --line2:#222B34;
+  --ink:#E8EDF2; --ink2:#9DA9B5; --ink3:#6B7682;
+  --acc:#FF6A2C; --acc-d:#C94F1E; --accsoft:#2a1206;
+  --ok:#36C190; --okbg:#102a22; --bad:#E5484D; --badbg:#2c1416; --warn:#F5A524; --warnbg:#2c2410;
+  --headerbg:rgba(14,17,22,.92); --grp:#11161c; --today:#12171f; --shadow:0 30px 80px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",sans-serif;font-size:14px}
+h1,h2,h3{font-family:"Archivo",sans-serif;margin:0;letter-spacing:-.01em}
+.mono{font-family:"IBM Plex Mono",monospace}
+.wrap{max-width:1320px;margin:0 auto;padding:0 18px 70px}
+header{position:sticky;top:0;z-index:30;background:var(--headerbg);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hbar{max-width:1320px;margin:0 auto;padding:13px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand .t{font-family:"Archivo";font-weight:800;font-size:19px;text-transform:uppercase;line-height:1}
+.brand .s{font-family:"IBM Plex Mono";font-size:10px;color:var(--acc);letter-spacing:.16em;text-transform:uppercase;margin-top:3px;display:block}
+.weeknav{display:flex;align-items:center;gap:7px}
+.weeknav button{background:var(--panel);border:1px solid var(--line);color:var(--ink);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:15px}
+.weeknav button:hover{border-color:var(--acc)}
+.weeklabel{font-family:"IBM Plex Mono";font-size:13px;min-width:140px;text-align:center}
+.htools{display:flex;gap:8px;margin-left:auto;align-items:center}
+.icobtn{background:var(--panel);border:1px solid var(--line);color:var(--ink);height:32px;padding:0 11px;border-radius:8px;cursor:pointer;font-size:12px;font-family:"IBM Plex Mono";display:flex;align-items:center;gap:6px}
+.icobtn:hover{border-color:var(--acc);color:var(--acc)}
+.kpis{display:flex;gap:8px;flex-wrap:wrap}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px;min-width:70px}
+.kpi b{font-family:"Archivo";font-size:19px;display:block;line-height:1}
+.kpi span{font-family:"IBM Plex Mono";font-size:9px;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+.kpi.acc b{color:var(--acc)}.kpi.bad b{color:var(--bad)}.kpi.warn b{color:var(--warn)}.kpi.ok b{color:var(--ok)}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);max-width:1320px;margin:0 auto;padding:0 18px;flex-wrap:wrap}
+.tab{font-family:"Archivo";font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;padding:11px 15px;color:var(--ink3);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent}
+.tab:hover{color:var(--ink2)}.tab.on{color:var(--ink);border-bottom-color:var(--acc)}
+.view{padding-top:18px}.hide{display:none!important}
+.muted{color:var(--ink3);font-size:12px;font-family:"IBM Plex Mono"}
+.toolbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+.scroll{overflow:auto;border:1px solid var(--line);border-radius:10px;max-height:72vh;background:var(--bg2)}
+table{border-collapse:separate;border-spacing:0;width:100%}
+th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);vertical-align:top}
+thead th{position:sticky;top:0;z-index:10;background:var(--panel2);font-family:"IBM Plex Mono";font-size:10.5px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;padding:8px;text-align:center}
+thead th .dn{display:block;color:var(--ink);font-size:13px;margin-top:2px;font-family:"Archivo";font-weight:700}
+.colobra{position:sticky;left:0;z-index:5;background:var(--panel2);min-width:184px;max-width:184px;text-align:left!important}
+thead th.colobra{z-index:15}
+tbody td.colobra{background:var(--panel)}
+.obra-n{font-weight:600;font-size:13px;line-height:1.15;padding:8px 10px 0}
+.obra-m{font-family:"IBM Plex Mono";font-size:9px;color:var(--ink3);margin:3px 0 8px;padding:0 10px;display:flex;gap:6px;flex-wrap:wrap}
+.grp td{background:var(--grp);font-family:"Archivo";font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);padding:7px 10px;position:sticky;left:0}
+.cell{padding:5px;min-width:126px;background:var(--bg2)}
+.cell.today{background:var(--today)}
+.chip{display:block;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--fam,#888);border-radius:7px;padding:5px 7px;margin-bottom:4px;cursor:pointer;transition:.12s}
+.chip:hover{border-color:var(--acc);transform:translateX(1px)}
+.chip.open{border-style:dashed;background:var(--warnbg);border-left-color:var(--warn)}
+.chip .w{font-weight:600;font-size:12px;display:flex;align-items:center;gap:6px}
+.chip.open .w{color:var(--warn)}
+.dot{width:13px;height:13px;border-radius:50%;border:2px solid var(--ink3);flex:0 0 auto;cursor:pointer}
+.dot:hover{border-color:var(--ok)}
+.chip.done .dot{background:var(--ok);border-color:var(--ok)}
+.chip .sv{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink2);margin-top:2px;line-height:1.25}
+.chip .lo{color:var(--acc)}
+.addc{width:100%;background:none;border:1px dashed var(--line);color:var(--ink3);border-radius:7px;padding:4px;cursor:pointer;font-size:15px;line-height:1}
+.addc:hover{border-color:var(--acc);color:var(--acc)}
+/* conferência */
+.confcell{padding:7px 8px;text-align:center;font-family:"IBM Plex Mono";font-size:10.5px;min-width:94px}
+.cf-free{background:var(--badbg);color:var(--bad)}.cf-ok{background:var(--okbg);color:var(--ok)}.cf-warn{background:var(--warnbg);color:var(--warn);font-weight:600}
+.cf-ok b{display:block;color:var(--ink);font-size:11px}
+.colw{position:sticky;left:0;z-index:5;background:var(--panel);min-width:148px;text-align:left!important;padding:7px 10px;font-weight:600;font-size:12.5px}
+.banner{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.bcard{flex:1;min-width:115px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.bcard .d{font-family:"IBM Plex Mono";font-size:9.5px;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em}
+.bcard .n{font-family:"Archivo";font-weight:800;font-size:22px;margin-top:2px}
+.bcard.has .n{color:var(--bad)}.bcard.zero .n{color:var(--ok)}.bcard .x{font-size:11px;color:var(--ink3);margin-top:2px;font-family:"IBM Plex Mono"}
+/* metas */
+.metaobra{margin-bottom:18px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg2)}
+.metahead{display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--panel2);border-bottom:1px solid var(--line)}
+.metahead h3{font-size:15px}.metahead .cli{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink2)}
+.metahead .reu{margin-left:auto;font-family:"IBM Plex Mono";font-size:10px;color:var(--ink3)}
+.metarow{display:grid;grid-template-columns:30px 1.6fr 150px 92px 1fr 92px;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line2);font-size:12.5px}
+.metarow:last-child{border-bottom:none}
+.metarow .fase{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink3);text-align:center}
+.metarow .loc{font-weight:600;line-height:1.2}.metarow .loc small{display:block;font-weight:400;color:var(--ink3);font-family:"IBM Plex Mono";font-size:10px;margin-top:2px}
+.metarow .dts{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--ink2);line-height:1.4}
+.metarow .dts .r{color:var(--acc)}
+.badge{font-family:"Archivo";font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.04em;padding:4px 8px;border-radius:20px;text-align:center;white-space:nowrap}
+.b-fut{background:var(--panel2);color:var(--ink2);border:1px solid var(--line)}
+.b-run{background:var(--accsoft);color:var(--acc);border:1px solid var(--acc)}
+.b-late{background:var(--badbg);color:var(--bad);border:1px solid var(--bad)}
+.b-done{background:var(--okbg);color:var(--ok);border:1px solid var(--ok)}
+.mbar{height:6px;background:var(--bg);border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-top:5px}
+.mbar i{display:block;height:100%;background:var(--acc)}
+.metarow .ed{cursor:pointer;color:var(--ink3);text-align:center}.metarow .ed:hover{color:var(--acc)}
+/* evolução */
+.egrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.ecard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.ecard h3{font-size:14px;display:flex;justify-content:space-between;align-items:baseline}.ecard h3 small{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink3);font-weight:400}
+.estat{display:flex;gap:16px;margin:10px 0 8px}.estat div b{font-family:"Archivo";font-size:20px;display:block;line-height:1}.estat div span{font-family:"IBM Plex Mono";font-size:9px;color:var(--ink2);text-transform:uppercase}
+.bar{height:8px;background:var(--bg);border-radius:5px;overflow:hidden;border:1px solid var(--line)}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc-d))}
+.barlab{display:flex;justify-content:space-between;font-family:"IBM Plex Mono";font-size:10px;color:var(--ink2);margin:9px 0 3px}
+.section-t{font-family:"Archivo";font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:12px;color:var(--ink2);margin:6px 0 10px}
+.dist .drow{display:grid;grid-template-columns:130px 1fr 42px;gap:8px;align-items:center;margin-bottom:5px;font-family:"IBM Plex Mono";font-size:11px}
+.cadcols{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.cadcols{grid-template-columns:1fr}}
+.cadbox{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.cadlist{max-height:300px;overflow:auto;margin-top:10px}
+.caditem{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border:1px solid var(--line);border-radius:7px;margin-bottom:5px;background:var(--bg2)}
+.caditem .x{cursor:pointer;color:var(--ink3);font-size:16px;padding:0 4px}.caditem .x:hover{color:var(--bad)}
+.cadadd{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+input,select,textarea{font-family:inherit;font-size:13px;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;outline:none}
+input:focus,select:focus{border-color:var(--acc)}
+.btn{font-family:"Archivo";font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.03em;border:none;border-radius:8px;padding:9px 14px;cursor:pointer}
+.btn.p{background:var(--acc);color:#fff}.btn.p:hover{background:var(--acc-d)}
+.btn.g{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}.btn.g:hover{border-color:var(--acc)}
+.btn.d{background:none;color:var(--bad);border:1px solid var(--bad)}.btn.d:hover{background:var(--badbg)}
+.btn.sm{padding:6px 10px;font-size:11px}
+.ov{position:fixed;inset:0;background:rgba(10,15,22,.55);backdrop-filter:blur(3px);z-index:80;display:flex;align-items:center;justify-content:center;padding:18px}
+.modal{background:var(--bg2);border:1px solid var(--line);border-radius:14px;width:100%;max-width:430px;padding:20px;box-shadow:var(--shadow);max-height:90vh;overflow:auto}
+.modal h3{font-size:16px;margin-bottom:3px}.modal .mc{font-family:"IBM Plex Mono";font-size:11px;color:var(--acc);margin-bottom:15px}
+.fld{margin-bottom:11px;display:flex;flex-direction:column;gap:5px}
+.fld label{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em}
+.fld input,.fld select,.fld textarea{width:100%}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}.chk input{width:16px;height:16px;accent-color:var(--acc)}
+.mact{display:flex;gap:8px;margin-top:16px}.mact .btn{flex:1}.mact .side{flex:0 0 auto}
+@media print{header,.toolbar,.addc,.tabs,.htools{display:none!important}.scroll{max-height:none;border:none}body{background:#fff}}
+.dem{margin-bottom:16px}
+.demwrap{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg2)}
+.demrow{display:grid;grid-template-columns:1.3fr 1.7fr 60px 56px 56px 90px;gap:8px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line2);font-size:12.5px}
+.demrow:last-child{border-bottom:none}
+.demrow.h{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;background:var(--panel2)}
+.saldo-falta{color:var(--bad);font-weight:700}.saldo-ok{color:var(--ok);font-weight:700}.saldo-sobra{color:var(--warn);font-weight:700}
+.diafrente{display:grid;grid-template-columns:1.7fr 120px 78px 1.5fr;gap:10px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line2)}
+.diafrente:last-child{border-bottom:none}
+.dia-h{font-size:12.5px}.dia-p{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink3);margin-top:3px}
+.dia-in label{font-family:"IBM Plex Mono";font-size:9px;color:var(--ink2);text-transform:uppercase;display:block;margin-bottom:2px}
+.dia-in input{width:78px}
+.dia-prod{font-family:"IBM Plex Mono";font-size:10px;color:var(--ok);text-align:center;font-weight:600}
+.obra-pdo{font-family:"IBM Plex Mono";font-size:9px;color:var(--ink2);padding:0 10px 8px;line-height:1.3}
+</style>
+
+<header>
+  <div class="hbar">
+    <div class="brand"><span class="t">Programação Semanal</span><span class="s">Bronx · Planejamento &amp; Dados</span></div>
+    <div class="weeknav"><button data-act="wk" data-d="-1">‹</button><span class="weeklabel" id="weeklabel"></span><button data-act="wk" data-d="1">›</button></div>
+    <div class="htools">
+      <div class="kpis" id="kpis"></div>
+      <span id="connbadge" class="mono" style="font-size:10px;color:var(--ink3);align-self:center;margin-right:4px">● Local</span>
+      <button class="icobtn" data-act="undo" id="undobtn" title="Desfazer última ação">↺ Desfazer</button>
+      <button class="icobtn" data-act="theme" id="themebtn">☀ Tema</button>
+    </div>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-tab="prog">Programação</button>
+    <button class="tab" data-tab="conf">Conferência</button>
+    <button class="tab" data-tab="diario">Diário</button>
+    <button class="tab" data-tab="metas">Metas (PDO)</button>
+    <button class="tab" data-tab="evo">Evolução</button>
+    <button class="tab" data-tab="cad">Cadastros</button>
+  </div>
+</header>
+<div class="wrap">
+  <div id="v-prog" class="view"></div>
+  <div id="v-conf" class="view hide"></div>
+  <div id="v-diario" class="view hide"></div>
+  <div id="v-metas" class="view hide"></div>
+  <div id="v-evo" class="view hide"></div>
+  <div id="v-cad" class="view hide"></div>
+</div>
+<div id="modalroot"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+const KEY="bronx-prog-v4";
+const DAYS=["SEG","TER","QUA","QUI","SEX","SÁB"];
+const FAMCOLOR={"01":"#8A98A4","02":"#E8551F","03":"#127C53","04":"#3A6FD0","05":"#8A5BD0","06":"#1E9E8A","07":"#9A6700","08":"#6B7682"};
+let state=null, tab="prog";
+let undoStack=[];
+const MUT=new Set(["done","saveadd","saveedit","delalloc","repeat","savemeta","delmeta","addw","addo","adoptprod"]);
+function snapshot(){try{undoStack.push(JSON.stringify(state));if(undoStack.length>30)undoStack.shift();}catch(e){}}
+const pad=n=>String(n).padStart(2,"0");
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseISO=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d);};
+function mondayOf(d){const x=new Date(d);const k=(x.getDay()+6)%7;x.setDate(x.getDate()-k);x.setHours(0,0,0,0);return x;}
+function addDays(s,n){const d=parseISO(s);d.setDate(d.getDate()+n);return iso(d);}
+function weekDates(){const o=[];for(let i=0;i<6;i++)o.push(addDays(state.weekStart,i));return o;}
+const fmtDM=s=>{if(!s)return"—";const d=parseISO(s);return `${pad(d.getDate())}/${pad(d.getMonth()+1)}`;};
+const fmtDMY=s=>{if(!s)return"—";const d=parseISO(s);return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}`;};
+const todayISO=()=>iso(new Date());
+const dayDiff=(a,b)=>Math.round((parseISO(b)-parseISO(a))/864e5);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+
+const store={
+  async get(k){try{if(window.storage&&window.storage.get){const r=await window.storage.get(k,false);return r?r.value:null;}}catch(e){}try{return localStorage.getItem(k);}catch(e){return null;}},
+  async set(k,v){try{if(window.storage&&window.storage.set){await window.storage.set(k,v,false);return;}}catch(e){}try{localStorage.setItem(k,v);}catch(e){}},
+  async del(k){try{if(window.storage&&window.storage.delete){await window.storage.delete(k,false);return;}}catch(e){}try{localStorage.removeItem(k);}catch(e){}}
+};
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  BACKEND COMPARTILHADO (Firebase Realtime Database) — sem login.   ║
+// ║  Para ativar: crie um projeto grátis em console.firebase.google.com║
+// ║  → Realtime Database → cole o config abaixo no lugar de null.      ║
+// ║  Enquanto for null, o app roda local (localStorage), como antes.   ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAwF9aiTEFhIwt2BQmG-EbYY2zIBWxbZdQ",
+  authDomain: "bronx-planejamento.firebaseapp.com",
+  databaseURL: "https://bronx-planejamento-default-rtdb.firebaseio.com",
+  projectId: "bronx-planejamento",
+  storageBucket: "bronx-planejamento.firebasestorage.app",
+  messagingSenderId: "1045403987804",
+  appId: "1:1045403987804:web:32816fdf377327fe8b9b99",
+  measurementId: "G-JXXJSJPV47"
+}; // ← COLE AQUI o objeto firebaseConfig do seu projeto
+const RTDB_NODE = "bronx_planejamento";
+let fbRef=(null), lastWritten="";
+function ensureDefaults(){state.theme=state.theme||"light";state.services=state.services||[];state.obras=state.obras||[];state.workers=state.workers||[];state.allocations=state.allocations||[];state.metas=state.metas||[];state.producoes=state.producoes||[];if(!state.weekStart)state.weekStart=addDays(iso(mondayOf(new Date())),7);if(!state.dayView)state.dayView=weekDates()[0];}
+async function save(){const json=JSON.stringify(state);if(fbRef){lastWritten=json;try{await fbRef.set(state);}catch(e){console.error(e);}return;}try{await store.set(KEY,json);}catch(e){console.error(e);}}
+async function load(){try{const v=await store.get(KEY);if(v)return JSON.parse(v);}catch(e){}return null;}
+function updateConn(){const el=document.getElementById("connbadge");if(el){el.textContent=fbRef?"● Online":"● Local";el.style.color=fbRef?"var(--ok)":"var(--ink3)";}}
+function startBackend(){
+  if(FIREBASE_CONFIG && typeof firebase!=="undefined"){
+    try{
+      firebase.initializeApp(FIREBASE_CONFIG);
+      fbRef=firebase.database().ref(RTDB_NODE);
+      fbRef.on("value",snap=>{
+        const v=snap.val();
+        if(v){const json=JSON.stringify(v);if(json===lastWritten)return;state=v;ensureDefaults();applyTheme();if(!document.getElementById("modalroot").innerHTML)renderAll();updateConn();}
+        else{seed();save();applyTheme();renderAll();updateConn();}
+      });
+      return true;
+    }catch(e){console.error("Firebase indisponível, rodando local:",e);fbRef=null;}
+  }
+  return false;
+}
+
+function seed(){
+  const services=[["01.1","Lixamento / preparo",0],["01.2","Imprimação",0],["01.3","Regularização",0],["02.1","Manta asfáltica",25],["02.2","Manta ardosiada",25],["02.3","Manta autoadesiva",25],["03.1","Membrana PU",20],["04.1","Argamassa polimérica",15],["04.2","Polimérica antiefl.",15],["05.1","Cristalizante MC",30],["06.1","Manta PEAD",15],["06.2","Preprufe",18],["07.1","Proteção mecânica",22],["07.2","Geotêxtil",40],["08.1","Teste estanqueidade",0]].map(([cod,nome,prod])=>({id:cod,cod,nome,prod}));
+  const O=(nome,cliente,status,resp)=>({id:uid(),nome,cliente,status,resp});
+  const obras=[O("Artesano","Brasal","andamento","Renilson"),O("Closer 23","Brasal","andamento","Renilson"),O("Metropolitan","EBM","andamento","Marco Aurélio"),O("Wish 37","EBM","andamento","Marco Aurélio"),O("Gran Paris","Cooperacinco","andamento","Renilson"),O("Singah","Sousa Andrade","andamento","Kássio"),O("Gaudí","Sousa Andrade","andamento","Renilson"),O("City R. Paranhos","City","andamento","Kássio"),O("Alameda Areião","—","andamento","Kássio"),O("Platz 36","Brasal","andamento","Paulo"),O("B-Great B.Buritis","Bambuí","andamento","Renilson"),O("Origyn Bueno","Terral","andamento","Kássio"),O("Bauhaus","Sousa Andrade","andamento","Renilson"),O("Casa Conceito","Terral","andamento","Kássio"),O("Aya Itumbiara","Áurea","andamento","Kássio"),O("Le Parc","Áurea·R.Verde","andamento","Kássio"),O("Anthology","HVM·C.Grande","andamento","Naiara"),O("Infinity Business","OMINC","andamento","Vitor Camilo"),O("Resid. Matheus Neves","—","reta","Renilson"),O("Basílica Trindade","—","reta","Renilson")];
+  const wn=["Adson","Saymon","Gabriel","Edivan","Pedro","Eder","Lucas","Vitória","Gleverson","Itamar","Amanda","Josayne","Sérgio","Aldevan","Mayk","Lucas Castro","Branco","Marcos","Ovanir","Agostinho RJ","Neto","Vanderley","Wesley","Flávia","Aleluia","Alexandre","Karina","Célio","Rafael Costa","Roberto","Adalberto Reis","Marirrubes","Carlos","Ítalo","Genilton","Cleodomir","Thalisson","Sara","Adalberto Senna","Vinícius","Davi","César","Vitor","Mário","Gustavo","Adriano","Manoel"];
+  const workers=wn.map(n=>({id:uid(),nome:n,funcao:"Aplicador"}));
+  state={theme:"light",weekStart:addDays(iso(mondayOf(new Date())),7),services,obras,workers,allocations:[],metas:[]};
+  const wId=n=>workers.find(w=>w.nome===n).id, oId=n=>obras.find(o=>o.nome===n).id;
+  const days=weekDates();
+  const ex=[["Artesano","Adson","04.1","20º Pvto",6,4],["Artesano","Saymon","04.1","19º Pvto",6,3],["Artesano","Pedro","07.1","Lazer e 4º",6,6],["Artesano","",( "07.1"),"Proteção 4º (vaga)",4,0],["Closer 23","Lucas","04.1","27º Torre B",6,2],["Closer 23","Gleverson","07.1","Cobertura T.B",6,4],["Metropolitan","Lucas Castro","02.1","Manta 1º Pvto",6,3],["Wish 37","Neto","02.1","Manta Lazer",6,2],["Wish 37","","02.1","Lixamento PU garagem (vaga)",3,0],["Singah","Karina","04.1","27º Pvto",6,1],["Platz 36","Ítalo","02.1","Manta Lazer",6,0],["Aya Itumbiara","Sara","04.1","Tipos",6,3]];
+  ex.forEach(([o,w,s,loc,n,done])=>{for(let i=0;i<n;i++)state.allocations.push({id:uid(),date:days[i],obraId:oId(o),workerId:w?wId(w):"",serviceId:s,local:loc,realizado:i<done});});
+  // METAS / PDO
+  const M=(obra,fase,sid,local,ini,fim,m2,iniR,fimR,reu)=>({id:uid(),obraId:oId(obra),fase,serviceId:sid,local,iniPlan:ini,fimPlan:fim,m2,iniReal:iniR||"",fimReal:fimR||"",reuniao:reu});
+  state.metas=[
+    M("Artesano","Polimérica","04.1","Tipos 18-20º","2026-06-01","2026-07-10",1500,"","","2026-05-21"),
+    M("Artesano","Proteção","07.1","Lazer e 4º","2026-06-01","2026-06-20",600,"","","2026-05-21"),
+    M("Metropolitan","Manta","02.1","Manta 1º Pvto","2026-06-01","2026-06-30",800,"","","2026-05-21"),
+    M("Wish 37","Manta","02.1","Manta Lazer","2026-06-01","2026-06-20",650,"","","2026-05-21"),
+    M("Singah","Varandas","04.1","Varandas 39-41","2026-06-01","2026-06-19",300,"","","2026-05-21"),
+    M("Origyn Bueno","Cobertura","02.1","Cobertura","2026-06-01","2026-06-12",250,"","","2026-05-21"),
+    M("Aya Itumbiara","Tipos","04.1","Tipos torre","2026-06-15","2026-07-31",1100,"","","2026-05-21"),
+    M("Infinity Business","Fase 1","04.1","Soleira dos tipos (4-28)","2026-06-08","2026-07-19",1200,"","","2026-05-27"),
+    M("Infinity Business","Fase 2","04.1","Tipos (4º ao 28º)","2026-07-06","2026-12-18",4200,"","","2026-05-27"),
+    M("Infinity Business","Fase 3","02.1","Cobertura/Reservatório","2026-08-03","2026-09-18",900,"","","2026-05-27"),
+    M("Infinity Business","Fase 4","02.1","Térreo","2026-09-21","2026-10-23",700,"","","2026-05-27")
+  ];
+  state.producoes=[];state.dayView=days[0];
+  const PR=(di,obra,sid,local,m2,ocor)=>{const o=oId(obra);state.producoes.push({key:days[di]+"|"+o+"|"+sid+"|"+local,date:days[di],obraId:o,serviceId:sid,local,m2,ocor:ocor||""});};
+  PR(0,"Artesano","04.1","20º Pvto",20,"");PR(0,"Artesano","04.1","19º Pvto",16,"");PR(0,"Metropolitan","02.1","Manta 1º Pvto",28,"");PR(0,"Wish 37","02.1","Manta Lazer",24,"Material acabando");
+  PR(1,"Artesano","04.1","20º Pvto",22,"");PR(1,"Metropolitan","02.1","Manta 1º Pvto",30,"");
+}
+
+const svc=id=>state.services.find(s=>s.id===id);
+const wkr=id=>state.workers.find(w=>w.id===id);
+const obr=id=>state.obras.find(o=>o.id===id);
+const allocOf=(o,d)=>state.allocations.filter(a=>a.obraId===o&&a.date===d);
+const weekAllocs=()=>{const ds=new Set(weekDates());return state.allocations.filter(a=>ds.has(a.date));};
+
+function networkdays(a,b){if(!a||!b)return 0;let d=parseISO(a);const e=parseISO(b);if(d>e)return 0;let n=0,g=0;while(d<=e&&g<2000){const w=d.getDay();if(w!==0&&w!==6)n++;d.setDate(d.getDate()+1);g++;}return n;}
+function metaCalc(m){const s=svc(m.serviceId);const prod=s?s.prod:0;const du=networkdays(m.iniPlan,m.fimPlan);if(!m.m2||!prod||du<=0)return null;const ritmo=m.m2/du;return {du,ritmo,ef:Math.ceil(ritmo/prod),prod};}
+function metaActiveWeek(m){const ds=weekDates();const ws=ds[0],we=ds[5];const end=m.fimReal||m.fimPlan;return m.iniPlan&&end&&m.iniPlan<=we&&end>=ws;}
+function efetivoAlocado(m){const ds=new Set(weekDates());const set=new Set();state.allocations.forEach(a=>{if(a.obraId===m.obraId&&a.serviceId===m.serviceId&&a.workerId&&ds.has(a.date))set.add(a.workerId);});return set.size;}
+function frentesDoDia(day){const map={};state.allocations.filter(a=>a.date===day).forEach(a=>{const k=day+"|"+a.obraId+"|"+a.serviceId+"|"+(a.local||"");if(!map[k])map[k]={obraId:a.obraId,serviceId:a.serviceId,local:a.local||"",key:k,workers:[]};if(a.workerId)map[k].workers.push(a.workerId);});return Object.values(map);}
+function getProducao(key){return state.producoes.find(p=>p.key===key);}
+function m2AcumMeta(m){return state.producoes.filter(p=>p.obraId===m.obraId&&p.serviceId===m.serviceId).reduce((s,p)=>s+(p.m2||0),0);}
+function prodApurada(sid){let m2=0,hd=0;state.producoes.filter(p=>p.serviceId===sid).forEach(p=>{m2+=(p.m2||0);hd+=state.allocations.filter(a=>a.date===p.date&&a.obraId===p.obraId&&a.serviceId===p.serviceId&&(a.local||"")===p.local&&a.workerId).length;});return hd>0?m2/hd:null;}
+function obraPdoWeek(oid){const ms=state.metas.filter(m=>m.obraId===oid&&metaActiveWeek(m));if(!ms.length)return null;let fim=null,fis=0,nec=0,alo=0,nf=0;ms.forEach(m=>{if(!fim||m.fimPlan<fim)fim=m.fimPlan;const c=metaCalc(m);if(c){nec+=c.ef;alo+=efetivoAlocado(m);}if(m.m2){fis+=Math.min(100,m2AcumMeta(m)/m.m2*100);nf++;}});return {fim,fis:nf?Math.round(fis/nf):null,nec,alo};}
+function demandaHTML(){
+  const act=state.metas.filter(metaActiveWeek);
+  let nec=0,alo=0;const rows=act.map(m=>{const c=metaCalc(m);const o=obr(m.obraId);const need=c?c.ef:0;const al=efetivoAlocado(m);nec+=need;alo+=al;return {o:o?o.nome:'?',loc:m.local||m.fase,cod:svc(m.serviceId)?svc(m.serviceId).cod:'',m2:m.m2||0,need,al,saldo:need-al};});
+  const vagas=rows.reduce((s,r)=>s+Math.max(0,r.saldo),0);
+  let h=`<div class="dem"><div class="banner">${bcard(act.length,"Frentes ativas","acc")}${bcard(nec,"Efetivo necessário")}${bcard(alo,"Efetivo alocado",alo>=nec&&nec>0?"zero":"")}${bcard(vagas,"Vagas a preencher",vagas>0?"has":"zero")}</div>`;
+  if(act.length){
+    h+=`<div class="demwrap"><div class="demrow h"><span>Obra</span><span>Frente</span><span>m²</span><span>Nec.</span><span>Aloc.</span><span>Saldo</span></div>`;
+    rows.sort((a,b)=>b.saldo-a.saldo).forEach(r=>{const cls=r.saldo>0?'saldo-falta':(r.saldo<0?'saldo-sobra':'saldo-ok');const txt=r.saldo>0?('faltam '+r.saldo):(r.saldo<0?('sobra '+(-r.saldo)):'ok');
+      h+=`<div class="demrow"><span style="font-weight:600">${r.o}</span><span>${r.loc} <span class="muted">${r.cod}</span></span><span class="mono">${r.m2}</span><span class="mono">${r.need}</span><span class="mono">${r.al}</span><span class="${cls}">${txt}</span></div>`;});
+    h+=`</div>`;
+  } else h+=`<p class="muted">Nenhuma frente do PDO ativa nesta semana. Lance metas com m² na aba Metas.</p>`;
+  return h+`</div>`;
+}
+function metaStatus(m){
+  const t=todayISO();
+  if(m.fimReal)return m.fimReal<=m.fimPlan?{k:"done",l:"Concluída no prazo",p:100}:{k:"done",l:`Concluída +${dayDiff(m.fimPlan,m.fimReal)}d`,p:100};
+  if(t>m.fimPlan)return {k:"late",l:`Atrasada ${dayDiff(m.fimPlan,t)}d`,p:100};
+  const start=m.iniReal||m.iniPlan;
+  if(t>=start){const tot=Math.max(1,dayDiff(m.iniPlan,m.fimPlan));const el=Math.max(0,Math.min(tot,dayDiff(m.iniPlan,t)));return {k:"run",l:"Em andamento",p:Math.round(el/tot*100)};}
+  return {k:"fut",l:`Inicia ${fmtDM(m.iniPlan)}`,p:0};
+}
+
+function renderHeader(){
+  const ds=weekDates();
+  document.getElementById("weeklabel").textContent=`${fmtDM(ds[0])} – ${fmtDM(ds[5])}`;
+  const wa=weekAllocs();
+  const named=wa.filter(a=>a.workerId);
+  const lacunas=wa.filter(a=>!a.workerId).length;
+  const allocW=new Set(named.map(a=>a.workerId));
+  const idle=state.workers.length-allocW.size;
+  let conf=0;ds.forEach(d=>{const m={};named.filter(a=>a.date===d).forEach(a=>m[a.workerId]=(m[a.workerId]||0)+1);conf+=Object.values(m).filter(c=>c>1).length;});
+  const lateMetas=state.metas.filter(m=>metaStatus(m).k==="late").length;
+  document.getElementById("kpis").innerHTML=
+    kpi(new Set(wa.map(a=>a.obraId)).size,"Obras","")+kpi(`${allocW.size}/${state.workers.length}`,"Alocados")+
+    kpi(idle,"Ociosos",idle>0?"bad":"ok")+kpi(lacunas,"A definir",lacunas>0?"warn":"")+
+    kpi(conf,"Conflitos",conf>0?"warn":"")+kpi(lateMetas,"Metas atras.",lateMetas>0?"bad":"ok");
+  document.getElementById("themebtn").textContent=state.theme==="dark"?"🌙 Tema":"☀ Tema";
+}
+const kpi=(n,l,c="")=>`<div class="kpi ${c}"><b>${n}</b><span>${l}</span></div>`;
+
+function renderProg(){
+  const ds=weekDates(),today=todayISO();
+  let h=demandaHTML()+`<div class="toolbar"><button class="btn p sm" data-act="gotocad">+ Obra / Funcionário</button>
+    <button class="btn g sm" data-act="expesc">⬇ Exportar escala (CSV)</button>
+    <button class="btn g sm" data-act="print">🖨 Imprimir</button>
+    <span class="muted">Clique na célula p/ alocar · clique no <b>círculo</b> p/ concluir · cartão tracejado = vaga a definir</span></div>`;
+  h+=`<div class="scroll"><table><thead><tr><th class="colobra">Obra</th>`;
+  ds.forEach((d,i)=>h+=`<th class="${d===today?'':''}">${DAYS[i]}<span class="dn">${fmtDM(d)}</span></th>`);
+  h+=`</tr></thead><tbody>`;
+  [["reta","Reta Final"],["andamento","Em Andamento"],["pos","Pós-obra / Outros"]].forEach(([g,label])=>{
+    const obs=state.obras.filter(o=>o.status===g);if(!obs.length)return;
+    h+=`<tr class="grp"><td colspan="7">${label}</td></tr>`;
+    obs.forEach(o=>{
+      h+=`<tr><td class="colobra"><div class="obra-n">${o.nome}</div><div class="obra-m"><span>${o.cliente}</span>·<span>${o.resp}</span></div>${(function(){const pi=obraPdoWeek(o.id);if(!pi)return'';const falta=pi.alo<pi.nec;return `<div class="obra-pdo">PDO ${fmtDM(pi.fim)} · <span class="${falta?'saldo-falta':'saldo-ok'}">ef ${pi.alo}/${pi.nec}</span>${pi.fis!=null?` · fís ${pi.fis}%`:''}</div>`;})()}</td>`;
+      ds.forEach(d=>{
+        h+=`<td class="cell ${d===today?'today':''}">`;
+        allocOf(o.id,d).forEach(a=>{
+          const s=svc(a.serviceId),w=wkr(a.workerId),open=!a.workerId;
+          const fam=s?FAMCOLOR[s.cod.slice(0,2)]:"#888";
+          h+=`<div class="chip ${a.realizado?'done':''} ${open?'open':''}" style="--fam:${fam}" data-act="edit" data-id="${a.id}">
+            <div class="w"><span class="dot" data-act="done" data-id="${a.id}" title="concluir"></span>${open?'A definir':(w?w.nome:'?')}</div>
+            <div class="sv">${s?s.nome:''}${a.local?` · <span class="lo">${a.local}</span>`:''}</div></div>`;
+        });
+        h+=`<button class="addc" data-act="add" data-o="${o.id}" data-d="${d}">+</button></td>`;
+      });
+      h+=`</tr>`;
+    });
+  });
+  h+=`</tbody></table></div>`;
+  document.getElementById("v-prog").innerHTML=h;
+}
+
+function renderConf(){
+  const ds=weekDates();let b=`<div class="banner">`;
+  ds.forEach((d,i)=>{const named=new Set(weekAllocs().filter(a=>a.date===d&&a.workerId).map(a=>a.workerId));const idle=state.workers.length-named.size;const lac=weekAllocs().filter(a=>a.date===d&&!a.workerId).length;b+=`<div class="bcard ${idle>0?'has':'zero'}"><div class="d">${DAYS[i]} ${fmtDM(d)}</div><div class="n">${idle}</div><div class="x">ociosos · ${lac} vagas</div></div>`;});
+  b+=`</div>`;
+  let h=b+`<div class="scroll"><table><thead><tr><th class="colw">Funcionário</th>`;
+  ds.forEach((d,i)=>h+=`<th>${DAYS[i]}<span class="dn">${fmtDM(d)}</span></th>`);h+=`</tr></thead><tbody>`;
+  [...state.workers].sort((a,b)=>a.nome.localeCompare(b.nome)).forEach(w=>{
+    h+=`<tr><td class="colw">${w.nome}</td>`;
+    ds.forEach(d=>{const as=state.allocations.filter(a=>a.workerId===w.id&&a.date===d);
+      if(!as.length)h+=`<td class="confcell cf-free">livre</td>`;
+      else if(as.length===1){const o=obr(as[0].obraId);h+=`<td class="confcell cf-ok"><b>${o?o.nome:'?'}</b>${svc(as[0].serviceId)?svc(as[0].serviceId).cod:''}</td>`;}
+      else{const ns=as.map(a=>obr(a.obraId)?obr(a.obraId).nome:'?').join(" + ");h+=`<td class="confcell cf-warn">⚠ ${as.length}<br><span style="font-size:9px">${ns}</span></td>`;}});
+    h+=`</tr>`;});
+  h+=`</tbody></table></div>`;document.getElementById("v-conf").innerHTML=h;
+}
+
+function renderDiario(){
+  const day=state.dayView||weekDates()[0];
+  const fr=frentesDoDia(day);
+  let totM2=0,ocs=0,hdtot=0;
+  const cards=fr.map(f=>{const p=getProducao(f.key);const m2=p?(p.m2||0):0;totM2+=m2;hdtot+=f.workers.length;if(p&&p.ocor)ocs++;const prod=f.workers.length>0&&m2>0?(m2/f.workers.length):null;return {f,p,m2,prod};});
+  const wd=parseISO(day).getDay();
+  let h=`<div class="toolbar"><div class="weeknav"><button data-act="day" data-d="-1">‹</button><span class="weeklabel">${['DOM','SEG','TER','QUA','QUI','SEX','SÁB'][wd]} ${fmtDM(day)}</span><button data-act="day" data-d="1">›</button></div>
+    <span class="muted">Encarregado aponta m² produzido e ocorrências por frente. Produtividade do dia = m² ÷ pessoas presentes.</span></div>`;
+  h+=`<div class="banner">${bcard(fr.length,"Frentes no dia","acc")}${bcard(totM2,"m² produzido")}${bcard(hdtot,"Homem-dia")}${bcard(ocs,"Ocorrências",ocs>0?"has":"zero")}</div>`;
+  if(!fr.length){h+=`<p class="muted">Sem frentes alocadas neste dia. Aloque na aba Programação.</p>`;document.getElementById("v-diario").innerHTML=h;return;}
+  h+=`<div class="demwrap">`;
+  cards.forEach(c=>{const o=obr(c.f.obraId),s=svc(c.f.serviceId);
+    const names=c.f.workers.length?c.f.workers.map(w=>wkr(w)?wkr(w).nome:'?').join(", "):'<span class="saldo-falta">a definir</span>';
+    const da=`data-dt="${day}" data-ob="${c.f.obraId}" data-sv="${c.f.serviceId}" data-lo="${c.f.local}"`;
+    h+=`<div class="diafrente"><div class="dia-h"><b>${o?o.nome:'?'}</b> · ${s?s.nome:''} · <span style="color:var(--acc)">${c.f.local}</span><div class="dia-p">${c.f.workers.length} pess.: ${names}</div></div>
+      <div class="dia-in"><label>m² hoje</label><input type="number" data-m2key="${c.f.key}" ${da} value="${c.m2||''}"></div>
+      <div class="dia-prod">${c.prod?('prod '+c.prod.toFixed(1)+'<br>m²/HD'):'—'}</div>
+      <div><input type="text" data-ocorkey="${c.f.key}" ${da} placeholder="ocorrência (material, liberação, clima...)" value="${c.p?(c.p.ocor||''):''}" style="width:100%"></div></div>`;
+  });
+  h+=`</div>`;
+  document.getElementById("v-diario").innerHTML=h;
+}
+function renderMetas(){
+  let h=`<div class="toolbar"><button class="btn p sm" data-act="addmeta">+ Nova meta (PDO)</button>
+    <button class="btn g sm" data-act="expmeta">⬇ Exportar metas (CSV)</button>
+    <span class="muted">Metas acordadas com o cliente (PDO). Preencha a data real para validar o cumprimento.</span></div>`;
+  const obrasComMeta=[...new Set(state.metas.map(m=>m.obraId))];
+  if(!obrasComMeta.length)h+=`<p class="muted">Nenhuma meta lançada. Clique em “+ Nova meta”.</p>`;
+  obrasComMeta.forEach(oid=>{
+    const o=obr(oid);const ms=state.metas.filter(m=>m.obraId===oid);
+    const reu=ms[0]?ms[0].reuniao:"";
+    h+=`<div class="metaobra"><div class="metahead"><h3>${o?o.nome:'?'}</h3><span class="cli">${o?o.cliente:''}</span><span class="reu">Reunião PDO: ${fmtDMY(reu)}</span></div>`;
+    ms.forEach(m=>{const st=metaStatus(m);
+      h+=`<div class="metarow">
+        <div class="fase">${m.fase||''}</div>
+        <div class="loc">${m.local}<small>${(function(){const c=metaCalc(m);return (m.m2?m.m2+' m²':'sem m²')+(c?` · ${c.du} dias úteis · ritmo ${c.ritmo.toFixed(0)} m²/d · efetivo ${c.ef}`:'')+(m.m2?(' · físico '+Math.round(m2AcumMeta(m)/m.m2*100)+'%'):'')+(m.serviceId?(' · '+(svc(m.serviceId)?svc(m.serviceId).nome:'')):'');})()}</small></div>
+        <div class="dts">Plan: ${fmtDM(m.iniPlan)} → ${fmtDM(m.fimPlan)}<br><span class="r">Real: ${fmtDM(m.iniReal)} → ${fmtDM(m.fimReal)}</span></div>
+        <div class="badge b-${st.k}">${st.l}</div>
+        <div><div class="mbar"><i style="width:${st.p}%"></i></div></div>
+        <div class="ed" data-act="editmeta" data-id="${m.id}">✎</div></div>`;});
+    h+=`</div>`;});
+  document.getElementById("v-metas").innerHTML=h;
+}
+
+function renderEvo(){
+  const wa=weekAllocs();const total=wa.length,done=wa.filter(a=>a.realizado).length;const pct=total?Math.round(done/total*100):0;
+  const bySvc={};wa.forEach(a=>{const n=svc(a.serviceId)?svc(a.serviceId).nome:'?';bySvc[n]=(bySvc[n]||0)+1;});
+  const svcArr=Object.entries(bySvc).sort((a,b)=>b[1]-a[1]);const maxSvc=Math.max(1,...svcArr.map(x=>x[1]));
+  const metasLate=state.metas.filter(m=>metaStatus(m).k==="late").length;const metasDone=state.metas.filter(m=>metaStatus(m).k==="done").length;
+  let h=`<div class="banner">${bcard(total,"Dias-homem (semana)","acc")}${bcard(new Set(wa.map(a=>a.obraId)).size,"Obras c/ frente")}${bcard(pct+"%","Execução semana",pct>=60?"zero":"has")}${bcard(metasLate,"Metas atrasadas",metasLate>0?"has":"zero")}${bcard(metasDone,"Metas concluídas","zero")}</div>`;
+  h+=`<div class="section-t">Carga por serviço (dias-homem)</div><div class="cadbox dist">`;
+  svcArr.forEach(([n,c])=>h+=`<div class="drow"><span>${n}</span><div class="bar"><i style="width:${c/maxSvc*100}%"></i></div><b style="text-align:right">${c}</b></div>`);
+  h+=`</div><div class="section-t" style="margin-top:18px">Evolução por obra (semana)</div><div class="egrid">`;
+  state.obras.forEach(o=>{const as=wa.filter(a=>a.obraId===o.id);if(!as.length)return;const d=as.filter(a=>a.realizado).length,p=Math.round(d/as.length*100);
+    h+=`<div class="ecard"><h3>${o.nome}<small>${o.resp}</small></h3><div class="estat"><div><b>${new Set(as.filter(a=>a.workerId).map(a=>a.workerId)).size}</b><span>pessoas</span></div><div><b>${new Set(as.map(a=>a.serviceId)).size}</b><span>frentes</span></div><div><b>${as.length}</b><span>dias-h</span></div></div><div class="barlab"><span>Execução</span><span>${p}%</span></div><div class="bar"><i style="width:${p}%"></i></div></div>`;});
+  h+=`</div>`;document.getElementById("v-evo").innerHTML=h;
+}
+const bcard=(n,l,c="")=>`<div class="bcard ${c}"><div class="d">${l}</div><div class="n">${n}</div></div>`;
+
+function renderCad(){
+  let h=`<div class="cadcols"><div class="cadbox"><h3 style="font-size:14px">Funcionários <small class="muted">(${state.workers.length})</small></h3>
+    <div class="cadadd"><input id="nw" placeholder="Nome" style="flex:1"><button class="btn p sm" data-act="addw">Adicionar</button></div>
+    <div class="cadlist">${[...state.workers].sort((a,b)=>a.nome.localeCompare(b.nome)).map(w=>`<div class="caditem"><span>${w.nome}</span><span class="x" data-act="delw" data-id="${w.id}">×</span></div>`).join("")}</div></div>
+    <div class="cadbox"><h3 style="font-size:14px">Obras <small class="muted">(${state.obras.length})</small></h3>
+    <div class="cadadd"><input id="no" placeholder="Obra" style="flex:1 1 110px"><input id="nc" placeholder="Cliente" style="flex:1 1 80px"><select id="ns"><option value="andamento">Em andamento</option><option value="reta">Reta final</option><option value="pos">Pós-obra</option></select><input id="nr" placeholder="Responsável" style="flex:1 1 90px"><button class="btn p sm" data-act="addo">Add</button></div>
+    <div class="cadlist">${state.obras.map(o=>`<div class="caditem"><span>${o.nome} <span class="muted">${o.cliente}·${o.resp}</span></span><span class="x" data-act="delo" data-id="${o.id}">×</span></div>`).join("")}</div></div></div>
+    <div class="cadbox" style="margin-top:16px"><h3 style="font-size:14px">EAP de Serviços <small class="muted">(produtividade m²/homem-dia — calibre aqui; alimenta o efetivo necessário)</small></h3>
+    <div class="cadlist" style="max-height:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:5px">${state.services.map(s=>{const ap=prodApurada(s.id);return `<div class="caditem"><span><b style="color:var(--acc);font-family:'IBM Plex Mono'">${s.cod}</b> ${s.nome}</span><span class="mono" style="font-size:10px;color:var(--ink3)">m²/HD <input type="number" data-prodfor="${s.id}" value="${s.prod||0}" style="width:46px;padding:3px 5px"> ${ap?`real ${ap.toFixed(1)} <a data-act="adoptprod" data-id="${s.id}" style="color:var(--acc);cursor:pointer">adotar</a>`:''}</span></div>`}).join("")}</div></div>
+    <div class="toolbar" style="margin-top:18px"><button class="btn g sm" data-act="expjson">Exportar JSON (p/ o dev / Next.js)</button><button class="btn d sm" data-act="reset">Zerar e recarregar exemplo</button></div>`;
+  document.getElementById("v-cad").innerHTML=h;
+}
+
+/* modal */
+function modal(html){document.getElementById("modalroot").innerHTML=`<div class="ov" id="ov"><div class="modal">${html}</div></div>`;}
+function closeModal(){document.getElementById("modalroot").innerHTML="";}
+const svcOpts=(sel,blank)=>(blank?`<option value="">— sem serviço —</option>`:"")+state.services.map(s=>`<option value="${s.id}" ${s.id===sel?"selected":""}>${s.cod} · ${s.nome}</option>`).join("");
+const wkrOpts=sel=>`<option value="" ${!sel?"selected":""}>— A definir —</option>`+[...state.workers].sort((a,b)=>a.nome.localeCompare(b.nome)).map(w=>`<option value="${w.id}" ${w.id===sel?"selected":""}>${w.nome}</option>`).join("");
+const obrOpts=sel=>state.obras.map(o=>`<option value="${o.id}" ${o.id===sel?"selected":""}>${o.nome}</option>`).join("");
+function dayOpts(sel){const ds=weekDates();let o=ds.map((d,i)=>`<option value="${d}" ${d===sel?'selected':''}>${DAYS[i]} ${fmtDM(d)}</option>`);if(sel&&!ds.includes(sel))o.unshift(`<option value="${sel}" selected>${fmtDM(sel)}</option>`);return o.join('');}
+
+function openAdd(o,d){const ob=obr(o);modal(`<h3>Alocar</h3><div class="mc">${ob.nome} · ${fmtDM(d)}</div>
+  <div class="fld"><label>Funcionário (ou deixe “A definir”)</label><select id="m-w">${wkrOpts("")}</select></div>
+  <div class="fld"><label>Frente / Serviço (EAP)</label><select id="m-s">${svcOpts("04.1")}</select></div>
+  <div class="fld"><label>Pavimento / local</label><input id="m-l" placeholder="ex.: 20º Pvto, Lazer, SS3"></div>
+  <label class="chk"><input type="checkbox" id="m-r"> Já executado</label>
+  <div class="mact"><button class="btn g" data-act="closemodal">Cancelar</button><button class="btn p" data-act="saveadd" data-o="${o}" data-d="${d}">Alocar</button></div>`);}
+function openEdit(id){const a=state.allocations.find(x=>x.id===id);const ob=obr(a.obraId);modal(`<h3>Editar / mover alocação</h3><div class="mc">${ob.nome} · ${fmtDM(a.date)}</div>
+  <div class="row2"><div class="fld"><label>Obra (mover)</label><select id="m-o">${obrOpts(a.obraId)}</select></div><div class="fld"><label>Dia (mover)</label><select id="m-day">${dayOpts(a.date)}</select></div></div>
+  <div class="fld"><label>Funcionário</label><select id="m-w">${wkrOpts(a.workerId)}</select></div>
+  <div class="fld"><label>Frente / Serviço</label><select id="m-s">${svcOpts(a.serviceId)}</select></div>
+  <div class="fld"><label>Pavimento / local</label><input id="m-l" value="${a.local||''}"></div>
+  <label class="chk"><input type="checkbox" id="m-r" ${a.realizado?'checked':''}> Executado</label>
+  <div class="mact"><button class="btn d side" data-act="delalloc" data-id="${id}">Excluir</button><button class="btn g side" data-act="repeat" data-id="${id}">↻ Semana</button><button class="btn p" data-act="saveedit" data-id="${id}">Salvar</button></div>`);}
+function openMeta(id){const m=id?state.metas.find(x=>x.id===id):null;modal(`<h3>${m?'Editar':'Nova'} meta (PDO)</h3><div class="mc">Acordo com o cliente</div>
+  <div class="fld"><label>Obra</label><select id="x-o">${obrOpts(m?m.obraId:'')}</select></div>
+  <div class="row2"><div class="fld"><label>Fase / item</label><input id="x-f" value="${m?m.fase:''}" placeholder="Fase 1"></div><div class="fld"><label>m² a executar</label><input id="x-m2" type="number" value="${m?(m.m2||''):''}"></div></div>
+  <div class="fld"><label>Local / descrição</label><input id="x-l" value="${m?m.local:''}" placeholder="Tipos (4º ao 28º Pav)"></div>
+  <div class="fld"><label>Serviço (EAP, opcional)</label><select id="x-s">${svcOpts(m?m.serviceId:'',true)}</select></div>
+  <div class="row2"><div class="fld"><label>Início planejado</label><input id="x-ip" type="date" value="${m?m.iniPlan:''}"></div><div class="fld"><label>Fim planejado</label><input id="x-fp" type="date" value="${m?m.fimPlan:''}"></div></div>
+  <div class="row2"><div class="fld"><label>Início real</label><input id="x-ir" type="date" value="${m?m.iniReal:''}"></div><div class="fld"><label>Fim real</label><input id="x-fr" type="date" value="${m?m.fimReal:''}"></div></div>
+  <div class="fld"><label>Data da reunião PDO</label><input id="x-reu" type="date" value="${m?m.reuniao:todayISO()}"></div>
+  <div class="mact">${m?`<button class="btn d side" data-act="delmeta" data-id="${id}">Excluir</button>`:''}<button class="btn g side" data-act="closemodal">Cancelar</button><button class="btn p" data-act="savemeta" data-id="${m?id:''}">Salvar</button></div>`);}
+
+function downloadCSV(name,rows){const csv="\uFEFF"+rows.map(r=>r.map(c=>`"${String(c==null?'':c).replace(/"/g,'""')}"`).join(";")).join("\r\n");const b=new Blob([csv],{type:"text/csv"});const u=URL.createObjectURL(b);const a=document.createElement("a");a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
+
+const val=id=>document.getElementById(id).value;
+document.addEventListener("click",async e=>{
+  const tb=e.target.closest("[data-tab]");if(tb){setTab(tb.dataset.tab);return;}
+  if(e.target.id==="ov"){closeModal();return;}
+  const t=e.target.closest("[data-act]");if(!t)return;const a=t.dataset.act;
+  if(a==="undo"){if(undoStack.length){state=JSON.parse(undoStack.pop());await save();renderAll();}return;}
+  if(MUT.has(a))snapshot();
+  if(a==="wk"){state.weekStart=addDays(state.weekStart,7*Number(t.dataset.d));await save();renderAll();}
+  else if(a==="adoptprod"){const s=state.services.find(x=>x.id===t.dataset.id);const ap=prodApurada(t.dataset.id);if(s&&ap){s.prod=Math.round(ap*10)/10;await save();renderAll();}}
+  else if(a==="day"){state.dayView=addDays(state.dayView||weekDates()[0],Number(t.dataset.d));await save();renderDiario();renderHeader();}
+  else if(a==="theme"){state.theme=state.theme==="dark"?"light":"dark";applyTheme();await save();renderHeader();}
+  else if(a==="add")openAdd(t.dataset.o,t.dataset.d);
+  else if(a==="edit")openEdit(t.dataset.id);
+  else if(a==="closemodal")closeModal();
+  else if(a==="done"){const al=state.allocations.find(x=>x.id===t.dataset.id);al.realizado=!al.realizado;await save();renderAll();}
+  else if(a==="saveadd"){state.allocations.push({id:uid(),date:t.dataset.d,obraId:t.dataset.o,workerId:val("m-w"),serviceId:val("m-s"),local:val("m-l"),realizado:document.getElementById("m-r").checked});await save();closeModal();renderAll();}
+  else if(a==="saveedit"){const al=state.allocations.find(x=>x.id===t.dataset.id);al.obraId=val("m-o");al.date=val("m-day");al.workerId=val("m-w");al.serviceId=val("m-s");al.local=val("m-l");al.realizado=document.getElementById("m-r").checked;await save();closeModal();renderAll();}
+  else if(a==="delalloc"){state.allocations=state.allocations.filter(x=>x.id!==t.dataset.id);await save();closeModal();renderAll();}
+  else if(a==="repeat"){const al=state.allocations.find(x=>x.id===t.dataset.id);weekDates().forEach(d=>{if(!state.allocations.some(x=>x.date===d&&x.obraId===al.obraId&&x.workerId===al.workerId&&x.serviceId===al.serviceId))state.allocations.push({id:uid(),date:d,obraId:al.obraId,workerId:al.workerId,serviceId:al.serviceId,local:al.local,realizado:false});});await save();closeModal();renderAll();}
+  else if(a==="addmeta")openMeta("");
+  else if(a==="editmeta")openMeta(t.dataset.id);
+  else if(a==="savemeta"){const id=t.dataset.id;const data={obraId:val("x-o"),fase:val("x-f"),m2:Number(val("x-m2"))||0,local:val("x-l"),serviceId:val("x-s"),iniPlan:val("x-ip"),fimPlan:val("x-fp"),iniReal:val("x-ir"),fimReal:val("x-fr"),reuniao:val("x-reu")};if(id){Object.assign(state.metas.find(m=>m.id===id),data);}else{state.metas.push({id:uid(),...data});}await save();closeModal();renderAll();}
+  else if(a==="delmeta"){state.metas=state.metas.filter(m=>m.id!==t.dataset.id);await save();closeModal();renderAll();}
+  else if(a==="addw"){const n=val("nw").trim();if(n){state.workers.push({id:uid(),nome:n,funcao:"Aplicador"});await save();renderCad();renderHeader();}}
+  else if(a==="delw"){const id=t.dataset.id;const n=state.allocations.filter(x=>x.workerId===id).length;if(n>0&&!confirm(`Este funcionário tem ${n} alocação(ões) na base. Excluir vai transformá-las em vagas "a definir". Continuar?`))return;snapshot();state.allocations.forEach(x=>{if(x.workerId===id)x.workerId="";});state.workers=state.workers.filter(x=>x.id!==id);await save();renderAll();}
+  else if(a==="addo"){const n=val("no").trim();if(n){state.obras.push({id:uid(),nome:n,cliente:val("nc")||"—",status:val("ns"),resp:val("nr")||"—"});await save();renderCad();}}
+  else if(a==="delo"){const id=t.dataset.id;const na=state.allocations.filter(x=>x.obraId===id).length;const nm=state.metas.filter(m=>m.obraId===id).length;if((na||nm)&&!confirm(`Esta obra tem ${na} alocação(ões) e ${nm} meta(s). Excluir remove tudo. Continuar?`))return;snapshot();state.allocations=state.allocations.filter(x=>x.obraId!==id);state.metas=state.metas.filter(m=>m.obraId!==id);state.producoes=state.producoes.filter(p=>p.obraId!==id);state.obras=state.obras.filter(x=>x.id!==id);await save();renderAll();}
+  else if(a==="gotocad")setTab("cad");
+  else if(a==="print")window.print();
+  else if(a==="expesc"){const rows=[["Data","Obra","Cliente","Responsável","Funcionário","Serviço","Local","Status"]];weekDates().forEach(d=>state.allocations.filter(x=>x.date===d).forEach(al=>{const o=obr(al.obraId);rows.push([fmtDMY(d),o?o.nome:'',o?o.cliente:'',o?o.resp:'',al.workerId?wkr(al.workerId).nome:'A DEFINIR',svc(al.serviceId)?svc(al.serviceId).nome:'',al.local||'',al.realizado?'Executado':'Planejado']);}));downloadCSV("escala_bronx.csv",rows);}
+  else if(a==="expmeta"){const rows=[["Obra","Fase","Local","Dias","Início Plan","Fim Plan","Início Real","Fim Real","Status","Reunião"]];state.metas.forEach(m=>{const o=obr(m.obraId);rows.push([o?o.nome:'',m.fase,m.local,m.dias,fmtDMY(m.iniPlan),fmtDMY(m.fimPlan),fmtDMY(m.iniReal),fmtDMY(m.fimReal),metaStatus(m).l,fmtDMY(m.reuniao)]);});downloadCSV("metas_pdo_bronx.csv",rows);}
+  else if(a==="expjson"){const b=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const u=URL.createObjectURL(b);const x=document.createElement("a");x.href=u;x.download="programacao_bronx.json";x.click();URL.revokeObjectURL(u);}
+  else if(a==="reset"){if(confirm("Apagar tudo e recarregar exemplo?")){if(fbRef){seed();await save();}else{await store.del(KEY);seed();await save();}applyTheme();renderAll();}}
+});
+
+document.addEventListener("change",async e=>{
+  const pf=e.target.closest("[data-prodfor]");
+  if(pf){snapshot();const s=state.services.find(x=>x.id===pf.dataset.prodfor);if(s){s.prod=Number(pf.value)||0;await save();renderAll();}return;}
+  const t=e.target.closest("[data-m2key],[data-ocorkey]");
+  if(t){snapshot();const key=t.dataset.m2key||t.dataset.ocorkey;let p=state.producoes.find(x=>x.key===key);if(!p){p={key,date:t.dataset.dt,obraId:t.dataset.ob,serviceId:t.dataset.sv,local:t.dataset.lo,m2:0,ocor:""};state.producoes.push(p);}if(t.hasAttribute("data-m2key"))p.m2=Number(t.value)||0;if(t.hasAttribute("data-ocorkey"))p.ocor=t.value;await save();renderAll();}
+});
+function applyTheme(){document.documentElement.setAttribute("data-theme",state.theme||"light");}
+function setTab(n){tab=n;document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===n));["prog","conf","diario","metas","evo","cad"].forEach(v=>document.getElementById("v-"+v).classList.toggle("hide",v!==n));renderAll();}
+function renderAll(){renderHeader();if(tab==="prog")renderProg();else if(tab==="conf")renderConf();else if(tab==="diario")renderDiario();else if(tab==="metas")renderMetas();else if(tab==="evo")renderEvo();else if(tab==="cad")renderCad();}
+(async function init(){
+  if(startBackend()){updateConn();return;}
+  const s=await load();if(s&&s.obras&&s.allocations&&s.metas&&s.producoes){state=s;ensureDefaults();}else{seed();await save();}
+  applyTheme();renderAll();updateConn();
+})();
+</script>
