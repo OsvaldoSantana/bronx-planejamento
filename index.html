@@ -230,6 +230,69 @@ input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0
 .legend-t{font-family:"IBM Plex Mono";font-size:9.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);font-weight:600}
 .legend-item{display:flex;align-items:center;gap:6px;color:var(--ink2);font-weight:500}
 .swatch{width:11px;height:11px;border-radius:4px;display:inline-block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.fecharow{display:grid;grid-template-columns:1.6fr 116px 150px 92px 1.3fr 116px;gap:13px;align-items:center;padding:12px 15px;border-bottom:1px solid var(--line2)}
+.fecharow:last-child{border-bottom:none}
+.fc-id b{font-family:"Archivo";font-size:13px;font-weight:700}
+.fc-sub{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink3);margin-top:4px;display:flex;align-items:center}
+.fc-ex label{font-family:"IBM Plex Mono";font-size:9px;color:var(--ink2);text-transform:uppercase;display:block;margin-bottom:3px;letter-spacing:.05em}
+.fc-ex input{width:104px}
+.fc-fis .barlab{margin:0 0 4px}
+.fc-prod{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink2);text-align:center;line-height:1.5}.fc-prod b{color:var(--ok)}
+.fc-oc{width:100%}
+.ctrlcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--elev);margin-bottom:14px;overflow:hidden;transition:.16s}
+.ctrlcard:hover{box-shadow:var(--elev2)}
+.ctrlhead{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--panel2);border-bottom:1px solid var(--line)}
+.ctrlhead h3{font-size:15px}
+.ctrlhead .resp{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink3);margin-left:auto}
+.ctrl-status{font-family:"Archivo";font-weight:700;font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;padding:5px 11px;border-radius:20px}
+.st-ok{background:var(--okbg);color:var(--ok);border:1px solid var(--ok)}
+.st-warn{background:var(--warnbg);color:var(--warn);border:1px solid var(--warn)}
+.st-bad{background:var(--badbg);color:var(--bad);border:1px solid var(--bad)}
+.ctrl-cols{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;background:var(--line2)}
+@media(max-width:720px){.ctrl-cols{grid-template-columns:1fr}}
+.ctrl-col{background:var(--panel);padding:14px 16px}
+.ctrl-col h4{font-family:"IBM Plex Mono";font-size:9.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);margin:0 0 9px;font-weight:600}
+.ctrl-big{font-family:"Archivo";font-weight:800;font-size:23px;line-height:1}
+.ctrl-sub{font-family:"IBM Plex Mono";font-size:10px;color:var(--ink2);margin-top:4px}
+.twobar{margin-top:9px}
+.twobar .lab{display:flex;justify-content:space-between;font-family:"IBM Plex Mono";font-size:9px;color:var(--ink2);margin-bottom:3px}
+.alerts{padding:11px 16px;border-top:1px dashed var(--line);display:flex;gap:8px;flex-wrap:wrap}
+.alert{font-family:"IBM Plex Mono";font-size:10.5px;padding:4px 10px;border-radius:7px;background:var(--badbg);color:var(--bad);display:flex;align-items:center;gap:5px}
+.alert.warn{background:var(--warnbg);color:var(--warn)}
+.alert.ok{background:var(--okbg);color:var(--ok)}
+.quadro{background:#fff;color:#111;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--elev)}
+.q-head{display:flex;align-items:center;gap:22px;border-bottom:3px solid #111;padding-bottom:13px;margin-bottom:18px}
+.q-title{font-family:"Archivo";font-weight:800;font-size:21px;color:#111;letter-spacing:-.01em}
+.q-sub{font-family:"IBM Plex Mono";font-size:9.5px;color:#555;margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+.q-date{margin-left:auto;text-align:right}
+.q-dn{font-family:"Archivo";font-weight:800;font-size:16px;color:#111}
+.q-dd{font-family:"IBM Plex Mono";font-size:12px;color:#333;margin-top:2px}
+.q-meta{font-family:"IBM Plex Mono";font-size:11px;color:#333;border-left:1px solid #bbb;padding-left:18px;line-height:2.1}
+.q-obra{margin-bottom:18px;break-inside:avoid;page-break-inside:avoid}
+.q-obra-h{font-family:"Archivo";font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.04em;background:#eee;color:#111;padding:8px 11px;border:1px solid #bbb;border-bottom:none}
+.q-obra-h span{font-family:"IBM Plex Mono";font-weight:400;font-size:10px;color:#666;text-transform:none;margin-left:9px}
+.q-tbl{width:100%;border-collapse:collapse}
+.q-tbl th{font-family:"IBM Plex Mono";font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:#444;background:#f5f5f5;border:1px solid #bbb;padding:6px 9px;text-align:left}
+.q-tbl td{border:1px solid #bbb;padding:10px 9px;font-size:12px;height:36px;vertical-align:top;color:#111}
+.q-tbl td i{color:#999}
+.q-tbl .svtag{box-shadow:none}
+.q-ck{width:48px;text-align:center}
+.q-box{display:inline-block;width:17px;height:17px;border:1.5px solid #333;border-radius:3px;background:#fff}
+.q-blank td{height:32px;background:#fcfcfc}
+.q-foot{margin-top:16px;font-family:"IBM Plex Mono";font-size:10px;color:#666;border-top:1px dashed #bbb;padding-top:10px}
+@media print{
+  @page{size:landscape;margin:11mm}
+  body{background:#fff!important}
+  header,.tabs,.quadro-tools,.connbadge{display:none!important}
+  .view{padding:0!important}
+  .quadro{border:none!important;box-shadow:none!important;padding:0!important}
+}
+.rtbl{width:100%;border-collapse:collapse}
+.rtbl th{font-family:"IBM Plex Mono";font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3);text-align:left;padding:10px 16px;background:var(--panel2);border-bottom:1px solid var(--line)}
+.rtbl td{padding:9px 16px;font-size:12.5px;border-bottom:1px solid var(--line2);color:var(--ink2)}
+.rtbl tr:last-child td{border-bottom:none}
+.saldo-ok{color:var(--ok);font-weight:600}
+.gantt-wrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--elev);padding:16px 18px;overflow-x:auto}
 </style>
 
 <header>
@@ -246,26 +309,35 @@ input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0
   <div class="tabs" id="tabs">
     <button class="tab on" data-tab="prog">Programação</button>
     <button class="tab" data-tab="conf">Conferência</button>
-    <button class="tab" data-tab="diario">Diário</button>
+    <button class="tab" data-tab="mapa">Mapa de Recursos</button>
+    <button class="tab" data-tab="diario">Fechamento</button>
+    <button class="tab" data-tab="quadro">Quadro do Dia</button>
     <button class="tab" data-tab="metas">Metas (PDO)</button>
+    <button class="tab" data-tab="gantt">Gantt PDO</button>
     <button class="tab" data-tab="evo">Evolução</button>
+    <button class="tab" data-tab="ctrl">Controle</button>
     <button class="tab" data-tab="cad">Cadastros</button>
   </div>
 </header>
 <div class="wrap">
   <div id="v-prog" class="view"></div>
   <div id="v-conf" class="view hide"></div>
+  <div id="v-mapa" class="view hide"></div>
   <div id="v-diario" class="view hide"></div>
+  <div id="v-quadro" class="view hide"></div>
   <div id="v-metas" class="view hide"></div>
+  <div id="v-gantt" class="view hide"></div>
   <div id="v-evo" class="view hide"></div>
+  <div id="v-ctrl" class="view hide"></div>
   <div id="v-cad" class="view hide"></div>
 </div>
 <div id="modalroot"></div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
-const KEY="bronx-prog-v4";
+const KEY="bronx-prog-v5";
 const DAYS=["SEG","TER","QUA","QUI","SEX","SÁB"];
 const FAMCOLOR={"01":"#8A98A4","02":"#E8551F","03":"#127C53","04":"#3A6FD0","05":"#8A5BD0","06":"#1E9E8A","07":"#9A6700","08":"#6B7682"};
 function svcColor(sid){const s=svc(sid);return s?(FAMCOLOR[s.cod.slice(0,2)]||"#8696A3"):"#8696A3";}
@@ -358,6 +430,9 @@ function seed(){
   const PR=(di,obra,sid,local,m2,ocor)=>{const o=oId(obra);state.producoes.push({key:days[di]+"|"+o+"|"+sid+"|"+local,date:days[di],obraId:o,serviceId:sid,local,m2,ocor:ocor||""});};
   PR(0,"Artesano","04.1","20º Pvto",20,"");PR(0,"Artesano","04.1","19º Pvto",16,"");PR(0,"Metropolitan","02.1","Manta 1º Pvto",28,"");PR(0,"Wish 37","02.1","Manta Lazer",24,"Material acabando");
   PR(1,"Artesano","04.1","20º Pvto",22,"");PR(1,"Metropolitan","02.1","Manta 1º Pvto",30,"");
+  if(state.metas[0])state.metas[0].m2exec=450; if(state.metas[2])state.metas[2].m2exec=120; if(state.metas[3])state.metas[3].m2exec=90;
+  if(state.metas[5]){state.metas[5].m2exec=250;state.metas[5].fimReal=days[2];}
+  [58,35,115,110,60,108,62,58,58,115,115].forEach((p,i)=>{if(state.metas[i])state.metas[i].preco=p;});
 }
 
 const svc=id=>state.services.find(s=>s.id===id);
@@ -372,8 +447,9 @@ function metaActiveWeek(m){const ds=weekDates();const ws=ds[0],we=ds[5];const en
 function efetivoAlocado(m){const ds=new Set(weekDates());const set=new Set();state.allocations.forEach(a=>{if(a.obraId===m.obraId&&a.serviceId===m.serviceId&&a.workerId&&ds.has(a.date))set.add(a.workerId);});return set.size;}
 function frentesDoDia(day){const map={};state.allocations.filter(a=>a.date===day).forEach(a=>{const k=day+"|"+a.obraId+"|"+a.serviceId+"|"+(a.local||"");if(!map[k])map[k]={obraId:a.obraId,serviceId:a.serviceId,local:a.local||"",key:k,workers:[]};if(a.workerId)map[k].workers.push(a.workerId);});return Object.values(map);}
 function getProducao(key){return state.producoes.find(p=>p.key===key);}
-function m2AcumMeta(m){return state.producoes.filter(p=>p.obraId===m.obraId&&p.serviceId===m.serviceId).reduce((s,p)=>s+(p.m2||0),0);}
-function prodApurada(sid){let m2=0,hd=0;state.producoes.filter(p=>p.serviceId===sid).forEach(p=>{m2+=(p.m2||0);hd+=state.allocations.filter(a=>a.date===p.date&&a.obraId===p.obraId&&a.serviceId===p.serviceId&&(a.local||"")===p.local&&a.workerId).length;});return hd>0?m2/hd:null;}
+function m2AcumMeta(m){return m.m2exec||0;}
+function hdReal(obraId,serviceId){return state.allocations.filter(a=>a.obraId===obraId&&a.serviceId===serviceId&&a.workerId&&a.realizado).length;}
+function prodApurada(sid){let m2=0;const obras=new Set();state.metas.forEach(m=>{if(m.serviceId===sid&&(m.m2exec||0)>0){m2+=m.m2exec;obras.add(m.obraId);}});let hd=0;obras.forEach(ob=>hd+=hdReal(ob,sid));return hd>0?m2/hd:null;}
 function obraPdoWeek(oid){const ms=state.metas.filter(m=>m.obraId===oid&&metaActiveWeek(m));if(!ms.length)return null;let fim=null,fis=0,nec=0,alo=0,nf=0;ms.forEach(m=>{if(!fim||m.fimPlan<fim)fim=m.fimPlan;const c=metaCalc(m);if(c){nec+=c.ef;alo+=efetivoAlocado(m);}if(m.m2){fis+=Math.min(100,m2AcumMeta(m)/m.m2*100);nf++;}});return {fim,fis:nf?Math.round(fis/nf):null,nec,alo};}
 function demandaHTML(){
   const act=state.metas.filter(metaActiveWeek);
@@ -475,25 +551,27 @@ function renderConf(){
 }
 
 function renderDiario(){
-  const day=state.dayView||weekDates()[0];
-  const fr=frentesDoDia(day);
-  let totM2=0,ocs=0,hdtot=0;
-  const cards=fr.map(f=>{const p=getProducao(f.key);const m2=p?(p.m2||0):0;totM2+=m2;hdtot+=f.workers.length;if(p&&p.ocor)ocs++;const prod=f.workers.length>0&&m2>0?(m2/f.workers.length):null;return {f,p,m2,prod};});
-  const wd=parseISO(day).getDay();
-  let h=`<div class="toolbar"><div class="weeknav"><button data-act="day" data-d="-1">‹</button><span class="weeklabel">${['DOM','SEG','TER','QUA','QUI','SEX','SÁB'][wd]} ${fmtDM(day)}</span><button data-act="day" data-d="1">›</button></div>
-    <span class="muted">Encarregado aponta m² produzido e ocorrências por frente. Produtividade do dia = m² ÷ pessoas presentes.</span></div>`;
-  h+=`<div class="banner">${bcard(fr.length,"Frentes no dia","acc")}${bcard(totM2,"m² produzido")}${bcard(hdtot,"Homem-dia")}${bcard(ocs,"Ocorrências",ocs>0?"has":"zero")}</div>`;
-  if(!fr.length){h+=`<p class="muted">Sem frentes alocadas neste dia. Aloque na aba Programação.</p>`;document.getElementById("v-diario").innerHTML=h;return;}
-  h+=`<div class="demwrap">`;
-  cards.forEach(c=>{const o=obr(c.f.obraId),s=svc(c.f.serviceId);
-    const names=c.f.workers.length?c.f.workers.map(w=>wkr(w)?wkr(w).nome:'?').join(", "):'<span class="saldo-falta">a definir</span>';
-    const da=`data-dt="${day}" data-ob="${c.f.obraId}" data-sv="${c.f.serviceId}" data-lo="${c.f.local}"`;
-    h+=`<div class="diafrente"><div class="dia-h"><b>${o?o.nome:'?'}</b> · ${s?s.nome:''} · <span style="color:var(--acc)">${c.f.local}</span><div class="dia-p">${c.f.workers.length} pess.: ${names}</div></div>
-      <div class="dia-in"><label>m² hoje</label><input type="number" data-m2key="${c.f.key}" ${da} value="${c.m2||''}"></div>
-      <div class="dia-prod">${c.prod?('prod '+c.prod.toFixed(1)+'<br>m²/HD'):'—'}</div>
-      <div><input type="text" data-ocorkey="${c.f.key}" ${da} placeholder="ocorrência (material, liberação, clima...)" value="${c.p?(c.p.ocor||''):''}" style="width:100%"></div></div>`;
-  });
-  h+=`</div>`;
+  const today=todayISO();
+  const frentes=state.metas.filter(m=>(m.m2exec>0)||(m.iniPlan&&m.iniPlan<=today)).slice().sort((a,b)=>(a.fimReal?1:0)-(b.fimReal?1:0));
+  let totExec=0,conc=0;const fisAll=[];
+  frentes.forEach(m=>{totExec+=(m.m2exec||0);if(m.fimReal)conc++;if(m.m2)fisAll.push(Math.min(100,(m.m2exec||0)/m.m2*100));});
+  const fisMed=fisAll.length?Math.round(fisAll.reduce((s,x)=>s+x,0)/fisAll.length):0;
+  let h=`<div class="dem"><div class="demtitle">Fechamento de frentes<small>Aponte o m² executado de cada frente e clique em Concluir quando terminar. A produtividade real sai do m² ÷ homem-dias concluídos — sem precisar de apontamento diário.</small></div>`;
+  h+=`<div class="banner">${bcard(frentes.length,"Frentes em execução","acc")}${bcard(totExec,"m² executado")}${bcard(fisMed+"%","Físico médio")}${bcard(conc,"Concluídas",conc>0?"zero":"")}</div></div>`;
+  if(!frentes.length){h+=`<p class="muted">Nenhuma frente iniciada ainda. As frentes aparecem aqui quando a data de início do PDO chega — ou assim que você lançar m² executado.</p>`;document.getElementById("v-diario").innerHTML=h;return;}
+  const byObra={};frentes.forEach(m=>{(byObra[m.obraId]=byObra[m.obraId]||[]).push(m);});
+  Object.keys(byObra).forEach(oid=>{const o=obr(oid);
+    h+=`<div class="metaobra"><div class="metahead"><h3>${o?o.nome:'?'}</h3><span class="cli">${o?o.cliente:''}</span></div>`;
+    byObra[oid].forEach(m=>{const s=svc(m.serviceId);const col=svcColor(m.serviceId);const hd=hdReal(m.obraId,m.serviceId);const exec=m.m2exec||0;const fis=m.m2?Math.round(exec/m.m2*100):0;const prod=hd>0&&exec>0?(exec/hd):null;const done=!!m.fimReal;
+      h+=`<div class="fecharow" style="border-left:4px solid ${col}">
+        <div class="fc-id"><b>${m.local||m.fase}</b><div class="fc-sub"><span class="svtag" style="background:${col}"></span>${s?s.nome:''} · meta ${m.m2||0} m² · ${fmtDM(m.iniPlan)}→${fmtDM(m.fimPlan)}</div></div>
+        <div class="fc-ex"><label>m² executado</label><input type="number" data-metam2="${m.id}" value="${exec||''}"></div>
+        <div class="fc-fis"><div class="barlab"><span>físico</span><span>${fis}%</span></div><div class="bar"><i style="width:${Math.min(100,fis)}%"></i></div></div>
+        <div class="fc-prod">${hd} HD${prod?`<br><b>${prod.toFixed(1)} m²/HD</b>`:''}</div>
+        <input class="fc-oc" type="text" data-metaocor="${m.id}" placeholder="ocorrência…" value="${m.ocor||''}">
+        <button class="btn ${done?'g':'p'} sm" data-act="${done?'reabrir':'concluir'}" data-id="${m.id}">${done?('✓ '+fmtDM(m.fimReal)):'Concluir'}</button>
+      </div>`;});
+    h+=`</div>`;});
   document.getElementById("v-diario").innerHTML=h;
 }
 function renderMetas(){
@@ -518,6 +596,130 @@ function renderMetas(){
   document.getElementById("v-metas").innerHTML=h;
 }
 
+function renderQuadro(){
+  const day=state.dayView||weekDates()[0];
+  const wd=parseISO(day).getDay();const dn=['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'][wd];
+  const fr=frentesDoDia(day);const byO={};fr.forEach(f=>{(byO[f.obraId]=byO[f.obraId]||[]).push(f);});
+  let h=`<div class="toolbar quadro-tools"><div class="weeknav"><button class="btn g sm" data-act="day" data-d="-1">‹ Dia anterior</button><span class="weekbar-lbl">${dn} ${fmtDM(day)}</span><button class="btn g sm" data-act="day" data-d="1">Próximo dia ›</button></div><button class="btn p sm" data-act="print">🖨 Imprimir quadro</button><span class="muted">Folha para a reunião diária: imprima, marque executado/não executado à mão e cole post-its das atividades extras.</span></div>`;
+  h+=`<div class="quadro" id="quadroprint">`;
+  h+=`<div class="q-head"><div><div class="q-title">QUADRO DIÁRIO DE ATIVIDADES</div><div class="q-sub">Bronx Impermeabilizações · Programação & Dados</div></div><div class="q-date"><div class="q-dn">${dn.toUpperCase()}</div><div class="q-dd">${fmtDMY(day)}</div></div><div class="q-meta">Responsável: _______________<br>Turno / horário: ___________</div></div>`;
+  const obras=Object.keys(byO);
+  if(!obras.length){h+=`<p class="muted" style="padding:24px;text-align:center">Sem atividades programadas para este dia. Aloque equipes na aba Programação — ou imprima assim para preencher com post-its.</p>`;}
+  obras.forEach(oid=>{const o=obr(oid);
+    h+=`<div class="q-obra"><div class="q-obra-h">${o?o.nome:'?'} <span>${o?(o.cliente+' · '+o.resp):''}</span></div>
+      <table class="q-tbl"><thead><tr><th>Frente — serviço · local</th><th>Equipe</th><th class="q-ck">Exec.</th><th class="q-ck">Não</th><th>Observação</th></tr></thead><tbody>`;
+    byO[oid].forEach(fF=>{const s=svc(fF.serviceId);const names=fF.workers.length?fF.workers.map(w=>wkr(w)?wkr(w).nome:'?').join(', '):'<i>a definir</i>';
+      h+=`<tr><td><span class="svtag" style="background:${svcColor(fF.serviceId)}"></span><b>${s?s.nome:''}</b> · ${fF.local||''}</td><td>${names}</td><td class="q-ck"><span class="q-box"></span></td><td class="q-ck"><span class="q-box"></span></td><td></td></tr>`;});
+    for(let i=0;i<2;i++)h+=`<tr class="q-blank"><td></td><td></td><td class="q-ck"><span class="q-box"></span></td><td class="q-ck"><span class="q-box"></span></td><td></td></tr>`;
+    h+=`</tbody></table></div>`;});
+  h+=`<div class="q-foot">Marque <b>Exec.</b> ou <b>Não</b> à mão na reunião diária. Linhas em branco e o espaço livre são para post-its de atividades não previstas.</div>`;
+  h+=`</div>`;
+  document.getElementById('v-quadro').innerHTML=h;
+}
+function getCSS(v){return (getComputedStyle(document.documentElement).getPropertyValue(v)||'').trim()||'#8696A3';}
+function resourceWeeks(){
+  const ms=state.metas.filter(m=>m.iniPlan&&m.fimPlan&&m.m2);if(!ms.length)return [];
+  const today=todayISO();
+  const minIni=ms.reduce((a,m)=>m.iniPlan<a?m.iniPlan:a,ms[0].iniPlan);
+  const maxFim=ms.reduce((a,m)=>m.fimPlan>a?m.fimPlan:a,ms[0].fimPlan);
+  const s0=minIni<today?today:minIni;
+  let cur=iso(mondayOf(parseISO(s0)));const weeks=[];let guard=0;
+  while(cur<=maxFim&&guard<16){weeks.push(cur);cur=addDays(cur,7);guard++;}
+  return weeks;
+}
+function renderGantt(){
+  const el=document.getElementById('v-gantt');
+  const ms=state.metas.filter(m=>m.iniPlan&&m.fimPlan).slice();
+  ms.sort((a,b)=>{const oa=obr(a.obraId),ob=obr(b.obraId);return (oa?oa.nome:'').localeCompare(ob?ob.nome:'')||a.iniPlan.localeCompare(b.iniPlan);});
+  let h=`<div class="dem"><div class="demtitle">Gantt de PDO — plano no tempo<small>Cada barra é uma frente do PDO, do início ao fim planejado. Enxergue a sobreposição das obras e onde os prazos se empilham. Cor = serviço; linha âmbar = hoje.</small></div></div>`;
+  if(!ms.length){h+=`<p class="muted">Cadastre metas (PDO) com datas de início e fim para ver o Gantt.</p>`;el.innerHTML=h;return;}
+  const sids=[...new Set(ms.map(m=>m.serviceId).filter(Boolean))].map(id=>svc(id)).filter(Boolean).sort((a,b)=>a.cod.localeCompare(b.cod));
+  h+=`<div class="legend"><span class="legend-t">Serviços</span>${sids.map(s=>`<span class="legend-item"><span class="swatch" style="background:${svcColor(s.id)}"></span>${s.nome}</span>`).join('')}</div>`;
+  h+=`<div class="gantt-wrap"><svg id="ganttsvg" style="width:100%;height:auto;display:block;min-width:780px"></svg></div>`;
+  el.innerHTML=h;drawGantt(ms);
+}
+function drawGantt(ms){
+  if(typeof d3==='undefined'){const s=document.getElementById('ganttsvg');if(s)s.outerHTML='<p class="muted" style="padding:10px">Gráfico requer conexão (D3).</p>';return;}
+  const svg=d3.select('#ganttsvg');if(svg.empty())return;svg.selectAll('*').remove();
+  const rowH=32,mL=232,mT=36,mR=24,mB=12,W=1100,ih=ms.length*rowH,H=mT+ih+mB;
+  svg.attr('viewBox',`0 0 ${W} ${H}`);
+  const minD=d3.min(ms,m=>parseISO(m.iniPlan)),maxD=d3.max(ms,m=>parseISO(m.fimPlan)),iw=W-mL-mR;
+  const x=d3.scaleTime().domain([d3.timeDay.offset(minD,-2),d3.timeDay.offset(maxD,2)]).range([0,iw]);
+  const g=svg.append('g').attr('transform',`translate(${mL},${mT})`);
+  const line=getCSS('--line2'),line1=getCSS('--line'),ink=getCSS('--ink'),ink3=getCSS('--ink3'),acc=getCSS('--acc');
+  x.ticks(Math.max(6,Math.min(13,Math.round(iw/82)))).forEach(t=>{const xx=x(t);g.append('line').attr('x1',xx).attr('x2',xx).attr('y1',-10).attr('y2',ih).attr('stroke',line);g.append('text').attr('x',xx).attr('y',-15).attr('text-anchor','middle').attr('fill',ink3).attr('font-size',9.5).attr('font-family','IBM Plex Mono').text(fmtDM(iso(t)));});
+  let prev=null;
+  ms.forEach((m,i)=>{const y=i*rowH;const o=obr(m.obraId),s=svc(m.serviceId),col=svcColor(m.serviceId);const nw=m.obraId!==prev;prev=m.obraId;
+    if(nw&&i>0)g.append('line').attr('x1',-mL).attr('x2',iw).attr('y1',y).attr('y2',y).attr('stroke',line1);
+    if(nw)g.append('text').attr('x',-mL+2).attr('y',y+13).attr('fill',ink).attr('font-size',11.5).attr('font-weight',700).attr('font-family','Archivo').text((o?o.nome:'?').slice(0,27));
+    g.append('text').attr('x',-mL+2).attr('y',y+(nw?26:18)).attr('fill',ink3).attr('font-size',10).attr('font-family','IBM Plex Mono').text(((s?s.nome:'')+' · '+(m.local||'')).slice(0,33));
+    const x0=x(parseISO(m.iniPlan)),x1=x(parseISO(m.fimPlan)),bw=Math.max(3,x1-x0);
+    g.append('rect').attr('x',x0).attr('y',y+7).attr('width',bw).attr('height',rowH-15).attr('rx',4).attr('fill',col).attr('opacity',.9);
+    if(bw>50)g.append('text').attr('x',x0+7).attr('y',y+rowH/2+1).attr('dy','0.2em').attr('fill','#fff').attr('font-size',9.5).attr('font-weight',600).attr('font-family','IBM Plex Mono').text((m.m2||'')+' m\u00b2');
+  });
+  const today=parseISO(todayISO());if(today>=x.domain()[0]&&today<=x.domain()[1]){const xt=x(today);g.append('line').attr('x1',xt).attr('x2',xt).attr('y1',-10).attr('y2',ih).attr('stroke',acc).attr('stroke-width',2).attr('stroke-dasharray','4 3');g.append('text').attr('x',xt).attr('y',-26).attr('text-anchor','middle').attr('fill',acc).attr('font-size',9.5).attr('font-weight',700).attr('font-family','IBM Plex Mono').text('hoje');}
+}
+function renderMapa(){
+  const el=document.getElementById('v-mapa');const cap=state.workers.length;const wks=resourceWeeks();
+  let h=`<div class="dem"><div class="demtitle">Mapa de Recursos — capacidade × demanda<small>Efetivo que o PDO exige a cada semana contra o efetivo disponível (${cap} cadastrados). Onde a barra passa da linha tracejada, falta gente — decida contratar, remanejar ou renegociar prazo antes de a semana chegar.</small></div>`;
+  if(!wks.length){h+=`</div><p class="muted">Cadastre metas (PDO) com datas e m² para ver a capacidade × demanda.</p>`;el.innerHTML=h;return;}
+  const data=wks.map(w=>{const we=addDays(w,5);let dem=0;state.metas.forEach(m=>{if(m.iniPlan&&m.fimPlan&&m.m2&&m.iniPlan<=we&&m.fimPlan>=w){const c=metaCalc(m);if(c)dem+=c.ef;}});return {w,dem};});
+  const maxDem=Math.max(cap,...data.map(d=>d.dem));
+  const peak=data.reduce((a,d)=>d.dem>a.dem?d:a,data[0]);
+  const defc=data.filter(d=>d.dem>cap).length;
+  h+=`<div class="banner">${bcard(cap,'Efetivo disponível','acc')}${bcard(Math.round(peak.dem),'Pico de demanda')}${bcard(fmtDM(peak.w),'Semana do pico')}${bcard(defc,'Semanas em déficit',defc>0?'has':'zero')}</div></div>`;
+  h+=`<div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--elev);padding:18px 18px 8px"><svg id="mapasvg" viewBox="0 0 1100 420" style="width:100%;height:auto;display:block"></svg></div>`;
+  h+=`<div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--elev);margin-top:14px;overflow:hidden"><table class="rtbl"><thead><tr><th>Semana</th><th>Demanda (efetivo)</th><th>Capacidade</th><th>Saldo</th></tr></thead><tbody>`;
+  data.forEach(d=>{const s=cap-d.dem;h+=`<tr><td>${fmtDM(d.w)}</td><td class="mono">${Math.round(d.dem)}</td><td class="mono">${cap}</td><td class="${s<0?'saldo-falta':'saldo-ok'}">${s<0?('faltam '+Math.round(-s)):('folga '+Math.round(s))}</td></tr>`;});
+  h+=`</tbody></table></div>`;
+  el.innerHTML=h;drawMapa(data,cap,maxDem);
+}
+function drawMapa(data,cap,maxDem){
+  if(typeof d3==='undefined'){const s=document.getElementById('mapasvg');if(s)s.outerHTML='<p class="muted" style="padding:10px">Gráfico requer conexão (D3). A tabela abaixo traz os mesmos números.</p>';return;}
+  const svg=d3.select('#mapasvg');if(svg.empty())return;svg.selectAll('*').remove();
+  const W=1100,H=420,m={t:24,r:26,b:46,l:46},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const g=svg.append('g').attr('transform',`translate(${m.l},${m.t})`);
+  const x=d3.scaleBand().domain(data.map(d=>d.w)).range([0,iw]).padding(0.3);
+  const y=d3.scaleLinear().domain([0,maxDem*1.14]).range([ih,0]);
+  const line=getCSS('--line2'),ink3=getCSS('--ink3'),ink2=getCSS('--ink2'),acc=getCSS('--acc'),bad=getCSS('--bad'),lc=getCSS('--line');
+  y.ticks(5).forEach(t=>{g.append('line').attr('x1',0).attr('x2',iw).attr('y1',y(t)).attr('y2',y(t)).attr('stroke',line);g.append('text').attr('x',-9).attr('y',y(t)).attr('dy','0.32em').attr('text-anchor','end').attr('fill',ink3).attr('font-size',10).attr('font-family','IBM Plex Mono').text(t);});
+  g.selectAll('.bar').data(data).enter().append('rect').attr('x',d=>x(d.w)).attr('y',d=>y(d.dem)).attr('width',x.bandwidth()).attr('height',d=>Math.max(0,ih-y(d.dem))).attr('rx',4).attr('fill',d=>d.dem>cap?bad:acc).attr('opacity',0.92);
+  g.selectAll('.lbl').data(data).enter().append('text').attr('x',d=>x(d.w)+x.bandwidth()/2).attr('y',d=>y(d.dem)-6).attr('text-anchor','middle').attr('fill',ink2).attr('font-size',11).attr('font-weight',600).attr('font-family','IBM Plex Mono').text(d=>Math.round(d.dem)||'');
+  g.append('line').attr('x1',0).attr('x2',iw).attr('y1',y(cap)).attr('y2',y(cap)).attr('stroke',ink2).attr('stroke-width',2).attr('stroke-dasharray','6 4');
+  g.append('text').attr('x',iw).attr('y',y(cap)-7).attr('text-anchor','end').attr('fill',ink2).attr('font-size',10).attr('font-weight',600).attr('font-family','IBM Plex Mono').text('capacidade '+cap);
+  g.selectAll('.xl').data(data).enter().append('text').attr('x',d=>x(d.w)+x.bandwidth()/2).attr('y',ih+18).attr('text-anchor','middle').attr('fill',ink3).attr('font-size',10).attr('font-family','IBM Plex Mono').text(d=>fmtDM(d.w));
+  g.append('line').attr('x1',0).attr('x2',iw).attr('y1',ih).attr('y2',ih).attr('stroke',lc);
+}
+function fmt(n){return Math.round(n||0).toLocaleString('pt-BR');}
+function metaExpectedPct(m){if(!m.iniPlan||!m.fimPlan)return 0;const t=todayISO();if(t<m.iniPlan)return 0;if(t>=m.fimPlan)return 100;const tot=networkdays(m.iniPlan,m.fimPlan),el=networkdays(m.iniPlan,t);return tot>0?Math.round(el/tot*100):0;}
+function obraControl(oid){const ms=state.metas.filter(m=>m.obraId===oid);if(!ms.length)return null;const today=todayISO();let m2=0,exec=0,rprev=0,rmed=0,wExp=0,atras=0;ms.forEach(m=>{const a=m.m2||0;m2+=a;exec+=(m.m2exec||0);rprev+=a*(m.preco||0);rmed+=(m.m2exec||0)*(m.preco||0);wExp+=a*metaExpectedPct(m);if(m.fimPlan&&m.fimPlan<today&&!m.fimReal&&(m.m2exec||0)<a)atras++;});const fis=m2?Math.round(exec/m2*100):0,exp=m2?Math.round(wExp/m2):0;return {m2,exec,rprev,rmed,fis,exp,desvio:fis-exp,atras,recPct:rprev?Math.round(rmed/rprev*100):0};}
+function ctrlStatus(oid,c){const ef=obraPdoWeek(oid);const falta=ef&&ef.alo<ef.nec;if(c.atras>0||c.desvio<=-15)return'bad';if(c.desvio<=-5||falta)return'warn';return'ok';}
+function renderCtrl(){
+  const data=state.obras.map(o=>({o,c:obraControl(o.id)})).filter(x=>x.c);
+  let rprev=0,rmed=0,m2=0,exec=0,alertN=0;
+  data.forEach(({o,c})=>{rprev+=c.rprev;rmed+=c.rmed;m2+=c.m2;exec+=c.exec;if(ctrlStatus(o.id,c)!=='ok')alertN++;});
+  const fisMed=m2?Math.round(exec/m2*100):0;
+  let h=`<div class="dem"><div class="demtitle">Controle — prazo × físico × financeiro<small>Leitura de gestão (PDCA): onde cada obra está no avanço físico contra o previsto pelo prazo, e quanto disso já virou receita medida. Vermelho = atenção.</small></div>`;
+  h+=`<div class="banner">${bcard('R$ '+fmt(rprev),'Receita prevista','acc')}${bcard('R$ '+fmt(rmed),'Receita medida')}${bcard(fisMed+'%','Físico médio')}${bcard(alertN,'Obras em alerta',alertN>0?'has':'zero')}</div></div>`;
+  if(!data.length){h+=`<p class="muted">Cadastre metas (PDO) com m² e preço (no editor de metas) para ver o controle.</p>`;document.getElementById('v-ctrl').innerHTML=h;return;}
+  const rank={ok:0,warn:1,bad:2};
+  data.sort((a,b)=>rank[ctrlStatus(b.o.id,b.c)]-rank[ctrlStatus(a.o.id,a.c)]);
+  data.forEach(({o,c})=>{const st=ctrlStatus(o.id,c);const lbl={ok:'EM DIA',warn:'ATENÇÃO',bad:'CRÍTICO'}[st];const ef=obraPdoWeek(o.id);
+    const al=[];
+    if(c.atras>0)al.push(`<span class="alert">⚠ ${c.atras} frente(s) atrasada(s)</span>`);
+    if(c.desvio<=-5)al.push(`<span class="alert ${c.desvio<=-15?'':'warn'}">↓ físico ${-c.desvio}% atrás do previsto</span>`);
+    if(ef&&ef.alo<ef.nec)al.push(`<span class="alert warn">👤 faltam ${ef.nec-ef.alo} na escala da semana</span>`);
+    if(!al.length)al.push(`<span class="alert ok">✓ sem alertas</span>`);
+    h+=`<div class="ctrlcard"><div class="ctrlhead"><h3>${o.nome}</h3><span class="ctrl-status st-${st}">${lbl}</span><span class="resp">${o.cliente} · ${o.resp}</span></div>
+      <div class="ctrl-cols">
+        <div class="ctrl-col"><h4>Prazo — desvio</h4><div class="ctrl-big" style="color:var(--${c.desvio<0?'bad':'ok'})">${c.desvio>0?'+':''}${c.desvio}%</div><div class="ctrl-sub">físico real × previsto p/ hoje</div>
+          <div class="twobar"><div class="lab"><span>físico real</span><span>${c.fis}%</span></div><div class="bar"><i style="width:${Math.min(100,c.fis)}%"></i></div></div>
+          <div class="twobar"><div class="lab"><span>previsto p/ hoje</span><span>${c.exp}%</span></div><div class="bar"><i style="width:${Math.min(100,c.exp)}%;background:var(--ink3)"></i></div></div></div>
+        <div class="ctrl-col"><h4>Físico executado</h4><div class="ctrl-big">${c.fis}%</div><div class="ctrl-sub">${fmt(c.exec)} / ${fmt(c.m2)} m²</div><div class="bar" style="margin-top:10px"><i style="width:${Math.min(100,c.fis)}%"></i></div></div>
+        <div class="ctrl-col"><h4>Financeiro — medido/previsto</h4><div class="ctrl-big">${c.recPct}%</div><div class="ctrl-sub">R$ ${fmt(c.rmed)} / ${fmt(c.rprev)}</div><div class="bar" style="margin-top:10px"><i style="width:${Math.min(100,c.recPct)}%"></i></div></div>
+      </div><div class="alerts">${al.join('')}</div></div>`;});
+  document.getElementById('v-ctrl').innerHTML=h;
+}
 function renderEvo(){
   const wa=weekAllocs();const total=wa.length,done=wa.filter(a=>a.realizado).length;const pct=total?Math.round(done/total*100):0;
   const bySvc={};wa.forEach(a=>{const n=svc(a.serviceId)?svc(a.serviceId).nome:'?';bySvc[n]=(bySvc[n]||0)+1;});
@@ -540,8 +742,9 @@ function renderCad(){
     <div class="cadbox"><h3 style="font-size:14px">Obras <small class="muted">(${state.obras.length})</small></h3>
     <div class="cadadd"><input id="no" placeholder="Obra" style="flex:1 1 110px"><input id="nc" placeholder="Cliente" style="flex:1 1 80px"><select id="ns"><option value="andamento">Em andamento</option><option value="reta">Reta final</option><option value="pos">Pós-obra</option></select><input id="nr" placeholder="Responsável" style="flex:1 1 90px"><button class="btn p sm" data-act="addo">Add</button></div>
     <div class="cadlist">${state.obras.map(o=>`<div class="caditem"><span>${o.nome} <span class="muted">${o.cliente}·${o.resp}</span></span><span class="x" data-act="delo" data-id="${o.id}">×</span></div>`).join("")}</div></div></div>
-    <div class="cadbox" style="margin-top:16px"><h3 style="font-size:14px">EAP de Serviços <small class="muted">(produtividade m²/homem-dia — calibre aqui; alimenta o efetivo necessário)</small></h3>
-    <div class="cadlist" style="max-height:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:5px">${state.services.map(s=>{const ap=prodApurada(s.id);return `<div class="caditem"><span><b style="color:var(--acc);font-family:'IBM Plex Mono'">${s.cod}</b> ${s.nome}</span><span class="mono" style="font-size:10px;color:var(--ink3)">m²/HD <input type="number" data-prodfor="${s.id}" value="${s.prod||0}" style="width:46px;padding:3px 5px"> ${ap?`real ${ap.toFixed(1)} <a data-act="adoptprod" data-id="${s.id}" style="color:var(--acc);cursor:pointer">adotar</a>`:''}</span></div>`}).join("")}</div></div>
+    <div class="cadbox" style="margin-top:16px"><h3 style="font-size:14px">Serviços <small class="muted">(produtividade m²/HD — calibre; adicione/remova livremente)</small></h3>
+    <div class="cadlist" style="max-height:none;margin-top:10px">${state.services.map(s=>{const ap=prodApurada(s.id);return `<div class="caditem"><span><b style="color:${svcColor(s.id)};font-family:'IBM Plex Mono'">${s.cod}</b> ${s.nome}</span><span class="mono" style="font-size:10px;color:var(--ink3);display:flex;align-items:center;gap:7px">m²/HD <input type="number" data-prodfor="${s.id}" value="${s.prod||0}" style="width:44px;padding:3px 5px">${ap?`<span>real ${ap.toFixed(1)}</span><a data-act="adoptprod" data-id="${s.id}" style="color:var(--acc);cursor:pointer">adotar</a>`:''}<span class="x" data-act="delsvc" data-id="${s.id}" title="excluir">✕</span></span></div>`}).join("")}</div>
+    <div class="cadadd"><input id="ns-cod" placeholder="cód (09.1)" style="width:90px"><input id="ns-nome" placeholder="nome do serviço" style="flex:1;min-width:140px"><input id="ns-prod" type="number" placeholder="m²/HD" style="width:80px"><button class="btn p sm" data-act="addsvc">+ Serviço</button></div></div>
     <div class="toolbar" style="margin-top:18px"><button class="btn g sm" data-act="expjson">Exportar JSON (p/ o dev / Next.js)</button><button class="btn d sm" data-act="reset">Zerar e recarregar exemplo</button></div>`;
   document.getElementById("v-cad").innerHTML=h;
 }
@@ -571,7 +774,7 @@ function openMeta(id){const m=id?state.metas.find(x=>x.id===id):null;modal(`<h3>
   <div class="fld"><label>Obra</label><select id="x-o">${obrOpts(m?m.obraId:'')}</select></div>
   <div class="row2"><div class="fld"><label>Fase / item</label><input id="x-f" value="${m?m.fase:''}" placeholder="Fase 1"></div><div class="fld"><label>m² a executar</label><input id="x-m2" type="number" value="${m?(m.m2||''):''}"></div></div>
   <div class="fld"><label>Local / descrição</label><input id="x-l" value="${m?m.local:''}" placeholder="Tipos (4º ao 28º Pav)"></div>
-  <div class="fld"><label>Serviço (EAP, opcional)</label><select id="x-s">${svcOpts(m?m.serviceId:'',true)}</select></div>
+  <div class="row2"><div class="fld"><label>Serviço (EAP, opcional)</label><select id="x-s">${svcOpts(m?m.serviceId:'',true)}</select></div><div class="fld"><label>Preço R$/m² (contrato)</label><input id="x-pr" type="number" value="${m?(m.preco||''):''}"></div></div>
   <div class="row2"><div class="fld"><label>Início planejado</label><input id="x-ip" type="date" value="${m?m.iniPlan:''}"></div><div class="fld"><label>Fim planejado</label><input id="x-fp" type="date" value="${m?m.fimPlan:''}"></div></div>
   <div class="row2"><div class="fld"><label>Início real</label><input id="x-ir" type="date" value="${m?m.iniReal:''}"></div><div class="fld"><label>Fim real</label><input id="x-fr" type="date" value="${m?m.fimReal:''}"></div></div>
   <div class="fld"><label>Data da reunião PDO</label><input id="x-reu" type="date" value="${m?m.reuniao:todayISO()}"></div>
@@ -591,7 +794,11 @@ document.addEventListener("click",async e=>{
   else if(a==="copychip"){const al=state.allocations.find(x=>x.id===t.dataset.id);if(al){const w=wkr(al.workerId);clip={workerId:al.workerId,serviceId:al.serviceId,local:al.local,nome:w?w.nome:'vaga'};renderProg();}}
   else if(a==="pastecell"){if(clip){snapshot();state.allocations.push({id:uid(),date:t.dataset.d,obraId:t.dataset.o,serviceId:clip.serviceId,workerId:clip.workerId,local:clip.local,realizado:false});await save();renderAll();}}
   else if(a==="adoptprod"){const s=state.services.find(x=>x.id===t.dataset.id);const ap=prodApurada(t.dataset.id);if(s&&ap){s.prod=Math.round(ap*10)/10;await save();renderAll();}}
-  else if(a==="day"){state.dayView=addDays(state.dayView||weekDates()[0],Number(t.dataset.d));await save();renderDiario();renderHeader();}
+  else if(a==="concluir"){snapshot();const m=state.metas.find(x=>x.id===t.dataset.id);if(m){m.fimReal=todayISO();await save();renderAll();}}
+  else if(a==="reabrir"){snapshot();const m=state.metas.find(x=>x.id===t.dataset.id);if(m){m.fimReal="";await save();renderAll();}}
+  else if(a==="addsvc"){const cod=(val("ns-cod")||"").trim(),nome=(val("ns-nome")||"").trim(),prod=Number(val("ns-prod"))||0;if(cod&&nome&&!state.services.find(s=>s.id===cod)){snapshot();state.services.push({id:cod,cod,nome,prod});await save();renderCad();}else if(state.services.find(s=>s.id===cod)){alert("Já existe um serviço com esse código.");}}
+  else if(a==="delsvc"){const id=t.dataset.id;const na=state.allocations.filter(x=>x.serviceId===id).length;const nm=state.metas.filter(m=>m.serviceId===id).length;if((na||nm)&&!confirm(`Este serviço tem ${na} alocação(ões) e ${nm} meta(s) usando ele. Excluir mesmo assim?`))return;snapshot();state.services=state.services.filter(s=>s.id!==id);await save();renderCad();}
+  else if(a==="day"){state.dayView=addDays(state.dayView||weekDates()[0],Number(t.dataset.d));await save();renderAll();}
   else if(a==="theme"){state.theme=state.theme==="dark"?"light":"dark";applyTheme();await save();renderHeader();}
   else if(a==="add")openAdd(t.dataset.o,t.dataset.d);
   else if(a==="edit")openEdit(t.dataset.id);
@@ -603,7 +810,7 @@ document.addEventListener("click",async e=>{
   else if(a==="repeat"){const al=state.allocations.find(x=>x.id===t.dataset.id);weekDates().forEach(d=>{if(!state.allocations.some(x=>x.date===d&&x.obraId===al.obraId&&x.workerId===al.workerId&&x.serviceId===al.serviceId))state.allocations.push({id:uid(),date:d,obraId:al.obraId,workerId:al.workerId,serviceId:al.serviceId,local:al.local,realizado:false});});await save();closeModal();renderAll();}
   else if(a==="addmeta")openMeta("");
   else if(a==="editmeta")openMeta(t.dataset.id);
-  else if(a==="savemeta"){const id=t.dataset.id;const data={obraId:val("x-o"),fase:val("x-f"),m2:Number(val("x-m2"))||0,local:val("x-l"),serviceId:val("x-s"),iniPlan:val("x-ip"),fimPlan:val("x-fp"),iniReal:val("x-ir"),fimReal:val("x-fr"),reuniao:val("x-reu")};if(id){Object.assign(state.metas.find(m=>m.id===id),data);}else{state.metas.push({id:uid(),...data});}await save();closeModal();renderAll();}
+  else if(a==="savemeta"){const id=t.dataset.id;const data={obraId:val("x-o"),fase:val("x-f"),m2:Number(val("x-m2"))||0,local:val("x-l"),serviceId:val("x-s"),preco:Number(val("x-pr"))||0,iniPlan:val("x-ip"),fimPlan:val("x-fp"),iniReal:val("x-ir"),fimReal:val("x-fr"),reuniao:val("x-reu")};if(id){Object.assign(state.metas.find(m=>m.id===id),data);}else{state.metas.push({id:uid(),...data});}await save();closeModal();renderAll();}
   else if(a==="delmeta"){state.metas=state.metas.filter(m=>m.id!==t.dataset.id);await save();closeModal();renderAll();}
   else if(a==="addw"){const n=val("nw").trim();if(n){state.workers.push({id:uid(),nome:n,funcao:"Aplicador"});await save();renderCad();renderHeader();}}
   else if(a==="delw"){const id=t.dataset.id;const n=state.allocations.filter(x=>x.workerId===id).length;if(n>0&&!confirm(`Este funcionário tem ${n} alocação(ões) na base. Excluir vai transformá-las em vagas "a definir". Continuar?`))return;snapshot();state.allocations.forEach(x=>{if(x.workerId===id)x.workerId="";});state.workers=state.workers.filter(x=>x.id!==id);await save();renderAll();}
@@ -620,6 +827,8 @@ document.addEventListener("click",async e=>{
 document.addEventListener("change",async e=>{
   const pf=e.target.closest("[data-prodfor]");
   if(pf){snapshot();const s=state.services.find(x=>x.id===pf.dataset.prodfor);if(s){s.prod=Number(pf.value)||0;await save();renderAll();}return;}
+  const mm=e.target.closest("[data-metam2],[data-metaocor]");
+  if(mm){snapshot();const id=mm.dataset.metam2||mm.dataset.metaocor;const m=state.metas.find(x=>x.id===id);if(m){if(mm.hasAttribute("data-metam2"))m.m2exec=Number(mm.value)||0;else m.ocor=mm.value;await save();renderAll();}return;}
   const t=e.target.closest("[data-m2key],[data-ocorkey]");
   if(t){snapshot();const key=t.dataset.m2key||t.dataset.ocorkey;let p=state.producoes.find(x=>x.key===key);if(!p){p={key,date:t.dataset.dt,obraId:t.dataset.ob,serviceId:t.dataset.sv,local:t.dataset.lo,m2:0,ocor:""};state.producoes.push(p);}if(t.hasAttribute("data-m2key"))p.m2=Number(t.value)||0;if(t.hasAttribute("data-ocorkey"))p.ocor=t.value;await save();renderAll();}
 });
@@ -630,8 +839,8 @@ document.addEventListener("dragleave",e=>{const cell=e.target.closest("[data-dro
 document.addEventListener("drop",async e=>{const cell=e.target.closest("[data-drop]");if(!cell||!dragAid)return;e.preventDefault();cell.classList.remove("dragover");const parts=cell.dataset.drop.split("|");const ob=parts[0],dt=parts[1];const al=state.allocations.find(x=>x.id===dragAid);if(al&&!(al.obraId===ob&&al.date===dt)){snapshot();if(e.ctrlKey||e.metaKey||e.altKey){state.allocations.push({id:uid(),date:dt,obraId:ob,serviceId:al.serviceId,workerId:al.workerId,local:al.local,realizado:false});}else{al.obraId=ob;al.date=dt;}await save();renderAll();}dragAid=null;});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&clip){clip=null;if(tab==="prog")renderProg();}});
 function applyTheme(){document.documentElement.setAttribute("data-theme",state.theme||"light");}
-function setTab(n){tab=n;document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===n));["prog","conf","diario","metas","evo","cad"].forEach(v=>document.getElementById("v-"+v).classList.toggle("hide",v!==n));renderAll();}
-function renderAll(){renderHeader();if(tab==="prog")renderProg();else if(tab==="conf")renderConf();else if(tab==="diario")renderDiario();else if(tab==="metas")renderMetas();else if(tab==="evo")renderEvo();else if(tab==="cad")renderCad();}
+function setTab(n){tab=n;document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.tab===n));["prog","conf","mapa","diario","quadro","metas","gantt","evo","ctrl","cad"].forEach(v=>document.getElementById("v-"+v).classList.toggle("hide",v!==n));renderAll();}
+function renderAll(){renderHeader();if(tab==="prog")renderProg();else if(tab==="conf")renderConf();else if(tab==="mapa")renderMapa();else if(tab==="diario")renderDiario();else if(tab==="quadro")renderQuadro();else if(tab==="metas")renderMetas();else if(tab==="gantt")renderGantt();else if(tab==="evo")renderEvo();else if(tab==="ctrl")renderCtrl();else if(tab==="cad")renderCad();}
 (async function init(){
   if(startBackend()){updateConn();return;}
   const s=await load();if(s&&s.obras&&s.allocations&&s.metas&&s.producoes){state=s;ensureDefaults();}else{seed();await save();}
